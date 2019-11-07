@@ -3,7 +3,7 @@ import Player
 
 
 pg.init()
-size = [720, 640]
+size = [720,540]
 screen = pg.display.set_mode(size)
 pg.display.set_caption("Devil Invade") #game title
 done = False
@@ -11,6 +11,7 @@ clock = pg.time.Clock()
 
 white = (255,255,255) #기본 색깔
 black = (0,0,0)
+wall = (100,100,100)
 
 #image = pg.image.load("../image/enemy/mob1.png").convert_alpha()
 # 이미지 예시
@@ -26,7 +27,7 @@ MoveUp = False
 MoveDown = False
 while not done :
 
-    clock.tick(12)
+    clock.tick(24)
 
     for event in pg.event.get():
         if event.type == pg.QUIT : #종료
@@ -54,10 +55,28 @@ while not done :
     
     screen.fill(white)
 
-    #인터페이스, 추후에 이미지로 바꾸기
-    pg.draw.rect(screen, black, [0,0,720,100], 0)
-    pg.draw.rect(screen, black, [0,580,720,60], 0)
-    
+    #wall, later, image
+    pg.draw.rect(screen,wall,[0,0,720,70],0)
+    pg.draw.rect(screen,wall,[0,0,70,540],0)
+    pg.draw.rect(screen,wall,[0,470,720,70],0)
+    pg.draw.rect(screen,wall,[650,0,70,540],0)
+
+    #door, later, image
+    pg.draw.rect(screen,black,[320,10,80,60],0)
+    pg.draw.rect(screen,black,[10,230,60,80],0)
+    pg.draw.rect(screen,black,[650,230,60,80],0)
+    pg.draw.rect(screen,black,[320,470,80,60],0)
+
+    #interface, later, image
+    font = pg.font.Font("../font/tvn.ttf", 50)
+    text_hp = font.render("HP:",True,white)
+    text_slash = font.render("/",True,white)
+    text_hp_now = font.render(str(player.get_hp()),True,white)
+    text_max_hp = font.render(str(player.get_max_hp()),True,white)
+    screen.blit(text_hp,(40,8))
+    screen.blit(text_slash,(130,8))
+    screen.blit(text_hp_now, (100,8))
+    screen.blit(text_max_hp, (155,8))
     
     if(MoveLeft):
         player.set_direction(2)
@@ -76,7 +95,7 @@ while not done :
         player.move()
         
 
-    pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 30,60],0)
+    pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 40,65],0)
 
     pg.display.flip()
 

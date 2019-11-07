@@ -33,6 +33,15 @@ class Move:
         if(self.direction == 3):
             self.x+=self.speed
 
+        if(self.y > 410): #추후 인터페이스 조정할 때 같이 조정해야 함  
+            self.y=410
+        if(self.y < 10):
+            self.y=10
+        if(self.x<70):
+            self.x=70
+        if(self.x>620):
+            self.x=620
+
     def set_x(self, x):
         self.x = x
 
