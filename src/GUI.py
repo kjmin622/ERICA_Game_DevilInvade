@@ -25,7 +25,7 @@ player = Player.Player(300,300,10,10)
 b_list = []
 
 for i in range(30):
-    b_list.append(Bullet.Bullet(80,100+i*10,3,10,1))
+    b_list.append(Bullet.Bullet(80,100+i*10,3,15,1))
 
 count = 0
 
@@ -35,7 +35,7 @@ MoveUp = False
 MoveDown = False
 
 #image
-
+bullet_image = pg.image.load("../image/enemy/BULLET.png")
 
 #sound
 pg.mixer.init()
@@ -115,7 +115,8 @@ while not done :
             b_list.remove(bullet)
             del(bullet)
         else:
-            pg.draw.circle(screen, black, [bullet.get_x(), bullet.get_y()], 8, 0)
+            screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))
+            
     
     #사운드
     #main_sound_a = 
