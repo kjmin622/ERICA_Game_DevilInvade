@@ -97,20 +97,20 @@ while not done :
     #플레이어 이동
     if(MoveLeft):
         player.set_direction(2)
-        player.move()
+        player.move(45,65)
     if(MoveRight):
         player.set_direction(3)
-        player.move()
+        player.move(45,65)
     if(MoveUp):
         player.set_direction(0)
-        player.move()
+        player.move(45,65)
     if(MoveDown):
         player.set_direction(1)
-        player.move()
+        player.move(45,65)
 
    #총알 list
     for bullet in b_list :
-        bullet.b_move()
+        bullet.move(-30,-30)
         if(bullet.hit_del(player)):
             b_list.remove(bullet)
             del(bullet)

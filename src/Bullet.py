@@ -19,10 +19,9 @@ class Bullet(Move):
 
         if(s_x>=p_x and s_x<=p_x+45 and s_y>=p_y and s_y<=p_y+65):
             player.add_hp(-self.damage)
-            print("hit",self.damage)
             return True
 
-        if(s_x<50 or s_x>670 or s_y<50 or s_y>490):
+        if(s_x<60 or s_x>660 or s_y<60 or s_y>480):
             return True
         return False
         
