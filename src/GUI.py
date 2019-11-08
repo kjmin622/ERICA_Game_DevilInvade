@@ -15,19 +15,8 @@ white = (255,255,255) #기본 색깔
 black = (0,0,0)
 wall = (100,100,100)
 
-#image = pg.image.load("../image/enemy/mob1.png").convert_alpha()
-# 이미지 예시
-
-#pg.draw.rect(screen, 색깔, [x,y,x크기, y크기], 각도)
-# 직사각형 그리기
-
 player = Player.Player(300,300,10,10)
 b_list = []
-
-for i in range(30):
-    b_list.append(Bullet.Bullet(80,100+i*10,3,15,1))
-
-count = 0
 
 MoveLeft = False
 MoveRight = False
@@ -36,6 +25,7 @@ MoveDown = False
 
 #image
 bullet_image = pg.image.load("../image/enemy/BULLET.png")
+mob1_image = pg.image.load("../image/enemy/mob_01.png")
 
 #sound
 pg.mixer.init()
@@ -117,14 +107,9 @@ while not done :
         else:
             screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))
             
-    
-    #사운드
-    #main_sound_a = 
 
-    #이미지 테스트
-    #image = pg.image.load("../image/enemy/mob_02.png").convert_alpha()
-    #screen.blit(image,(200,200))
-
+    if(player.death()):
+        done = True #죽었을 때 어떻게 할지 구현해야 함 
     pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
     pg.display.flip()

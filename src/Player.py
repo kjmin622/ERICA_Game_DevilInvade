@@ -23,9 +23,6 @@ class Player(Move) :
     def get_power(self):
         return self.power
 
-    def get_ms(self):
-        return self.move_speed
-
     def get_as(self):
         return self.at_speed
     
@@ -34,6 +31,8 @@ class Player(Move) :
         self.hp += value
         if(self.hp > self.max_hp) :
             self.hp = self.max_hp
+        if(self.hp < 0) :
+            self.hp = 0
 
     def add_max_hp(self, value):
         self.max_hp += value
@@ -58,6 +57,13 @@ class Player(Move) :
 
         if(self.at_speed <= 0):
             self.at_speed = 1
+
+    def death(self):
+        if(self.hp == 0):
+            return True
+        else:
+            return False
+
 
 
 
