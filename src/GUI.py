@@ -4,7 +4,6 @@ import Bullet
 
 
 pg.init()
-pg.mixer.init()
 
 size = [720,540]
 screen = pg.display.set_mode(size)
@@ -39,7 +38,9 @@ MoveDown = False
 
 
 #sound
-
+pg.mixer.init()
+back_music = pg.mixer.Sound('../sound/main.wav')
+back_music.play(-1)
 
 while not done :
 
@@ -117,6 +118,7 @@ while not done :
             pg.draw.circle(screen, black, [bullet.get_x(), bullet.get_y()], 8, 0)
     
     #사운드
+    #main_sound_a = 
 
     #이미지 테스트
     #image = pg.image.load("../image/enemy/mob_02.png").convert_alpha()
