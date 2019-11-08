@@ -1,6 +1,10 @@
 import pygame as pg
+import Player
+import Bullet
+
+
 pg.init()
-size = [720, 640]
+size = [720,540]
 screen = pg.display.set_mode(size)
 pg.display.set_caption("Devil Invade") #game title
 done = False
@@ -8,6 +12,7 @@ clock = pg.time.Clock()
 
 white = (255,255,255) #기본 색깔
 black = (0,0,0)
+wall = (100,100,100)
 
 #image = pg.image.load("../image/enemy/mob1.png").convert_alpha()
 # 이미지 예시
@@ -15,23 +20,91 @@ black = (0,0,0)
 #pg.draw.rect(screen, 색깔, [x,y,x크기, y크기], 각도)
 # 직사각형 그리기
 
+player = Player.Player(300,300,10,10)
+b_list = []
+
+MoveLeft = False
+MoveRight = False
+MoveUp = False
+MoveDown = False
 while not done :
 
-    clock.tick(8)
+    clock.tick(24)
 
     for event in pg.event.get():
-        if event.type == pg.QUIT :
+        if event.type == pg.QUIT : #종료
             done = True
+
+        if event.type == pg.KEYDOWN : #키 눌렀을 때 
+            if event.key == pg.K_LEFT:
+                MoveLeft = True
+            if event.key == pg.K_RIGHT:
+                MoveRight = True
+            if event.key == pg.K_UP:
+                MoveUp = True
+            if event.key == pg.K_DOWN:
+                MoveDown = True
+
+        if event.type == pg.KEYUP : #//
+            if event.key == pg.K_LEFT:
+                MoveLeft = False
+            if event.key == pg.K_RIGHT:
+                MoveRight = False
+            if event.key == pg.K_UP:
+                MoveUp = False
+            if event.key == pg.K_DOWN:
+                MoveDown = False
     
     screen.fill(white)
 
-    #인터페이스, 추후에 이미지로 바꾸기
-    pg.draw.rect(screen, black, [0,0,720,100], 0)
-    pg.draw.rect(screen, black, [0,580,720,60], 0)
+    #wall, later, image
+    pg.draw.rect(screen,wall,[0,0,720,70],0)
+    pg.draw.rect(screen,wall,[0,0,70,540],0)
+    pg.draw.rect(screen,wall,[0,470,720,70],0)
+    pg.draw.rect(screen,wall,[650,0,70,540],0)
+
+    #door, later, image
+    pg.draw.rect(screen,black,[320,10,80,60],0)
+    pg.draw.rect(screen,black,[10,230,60,80],0)
+    pg.draw.rect(screen,black,[650,230,60,80],0)
+    pg.draw.rect(screen,black,[320,470,80,60],0)
+
+    #interface, later, image
+    font = pg.font.Font("../font/tvn.ttf", 50)
+    text_hp = font.render("HP:",True,white)
+    text_slash = font.render("/",True,white)
+    text_hp_now = font.render(str(player.get_hp()),True,white)
+    text_max_hp = font.render(str(player.get_max_hp()),True,white)
+    screen.blit(text_hp,(40,8))
+    screen.blit(text_slash,(130,8))
+    screen.blit(text_hp_now, (100,8))
+    screen.blit(text_max_hp, (155,8))
     
+    #플레이어 이동
+    if(MoveLeft):
+        player.set_direction(2)
+        player.move()
+    if(MoveRight):
+        player.set_direction(3)
+        player.move()
+    if(MoveUp):
+        player.set_direction(0)
+        player.move()
+    if(MoveDown):
+        player.set_direction(1)
+        player.move()
+   
+   #총알 list
+    for bullet in b_list :
+        bullet.b_move()
+        if(bullet.hit_del(player)):
+            b_list.remove(bullet)
+            del(bullet)
+        else:
+            pg.draw.circle(screen, black, [bullet.get_x(), bullet.get_y()], 8, 0)
 
 
-
+    pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
     pg.display.flip()
 
