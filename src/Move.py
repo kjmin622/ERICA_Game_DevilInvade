@@ -23,7 +23,7 @@ class Move:
     def get_speed(self):
         return self.speed
 
-    def move(self):
+    def move(self): #플레이어 이동
         if(self.direction == 0):
             self.y-=self.speed
         if(self.direction == 1):
@@ -33,14 +33,24 @@ class Move:
         if(self.direction == 3):
             self.x+=self.speed
 
-        if(self.y > 410): #추후 인터페이스 조정할 때 같이 조정해야 함  
-            self.y=410
+        if(self.y > 405): #추후 인터페이스 조정할 때 같이 조정해야 함  
+            self.y=405
         if(self.y < 10):
             self.y=10
         if(self.x<70):
             self.x=70
-        if(self.x>620):
-            self.x=620
+        if(self.x>605):
+            self.x=605
+    
+    def b_move(self):  #총알 움직이기 
+        if(self.direction == 0):
+            self.y-=self.speed
+        if(self.direction == 1):
+            self.y+=self.speed
+        if(self.direction == 2):
+            self.x-=self.speed
+        if(self.direction == 3):
+            self.x+=self.speed
 
     def set_x(self, x):
         self.x = x

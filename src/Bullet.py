@@ -22,7 +22,7 @@ class Bullet(Move):
             print("hit",self.damage)
             return True
 
-        if(s_x<0 and s_x>720 and s_y<0 and s_y>540):
+        if(s_x<50 or s_x>670 or s_y<50 or s_y>490):
             return True
         return False
         

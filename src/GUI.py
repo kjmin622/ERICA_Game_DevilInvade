@@ -23,9 +23,6 @@ wall = (100,100,100)
 player = Player.Player(300,300,10,10)
 b_list = []
 
-#총알 테스트
-b_list.append(Bullet.Bullet(200,10,1,1,1))
-
 MoveLeft = False
 MoveRight = False
 MoveUp = False
@@ -97,14 +94,14 @@ while not done :
         player.set_direction(1)
         player.move()
    
-   #총알 테스트
+   #총알 list
     for bullet in b_list :
-        bullet.move()
+        bullet.b_move()
         if(bullet.hit_del(player)):
             b_list.remove(bullet)
             del(bullet)
         else:
-            pg.draw.circle(screen, wall, [bullet.get_x(), bullet.get_y()], 8, 0)
+            pg.draw.circle(screen, black, [bullet.get_x(), bullet.get_y()], 8, 0)
 
 
     pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
