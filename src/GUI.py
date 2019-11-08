@@ -4,6 +4,8 @@ import Bullet
 
 
 pg.init()
+pg.mixer.init()
+
 size = [720,540]
 screen = pg.display.set_mode(size)
 pg.display.set_caption("Devil Invade") #game title
@@ -23,14 +25,25 @@ wall = (100,100,100)
 player = Player.Player(300,300,10,10)
 b_list = []
 
+for i in range(30):
+    b_list.append(Bullet.Bullet(80,100+i*10,3,10,1))
+
+count = 0
+
 MoveLeft = False
 MoveRight = False
 MoveUp = False
 MoveDown = False
+
+#image
+
+
+#sound
+
+
 while not done :
 
     clock.tick(24)
-
     for event in pg.event.get():
         if event.type == pg.QUIT : #종료
             done = True
@@ -93,7 +106,7 @@ while not done :
     if(MoveDown):
         player.set_direction(1)
         player.move()
-   
+
    #총알 list
     for bullet in b_list :
         bullet.b_move()
@@ -102,7 +115,12 @@ while not done :
             del(bullet)
         else:
             pg.draw.circle(screen, black, [bullet.get_x(), bullet.get_y()], 8, 0)
+    
+    #사운드
 
+    #이미지 테스트
+    #image = pg.image.load("../image/enemy/mob_02.png").convert_alpha()
+    #screen.blit(image,(200,200))
 
     pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
