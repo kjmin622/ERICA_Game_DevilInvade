@@ -1,5 +1,6 @@
 import pygame as pg
 import Player
+import Bullet
 
 
 pg.init()
@@ -20,6 +21,10 @@ wall = (100,100,100)
 # 직사각형 그리기
 
 player = Player.Player(300,300,10,10)
+b_list = []
+
+#총알 테스트
+b_list.append(Bullet.Bullet(200,10,1,1,1))
 
 MoveLeft = False
 MoveRight = False
@@ -78,24 +83,31 @@ while not done :
     screen.blit(text_hp_now, (100,8))
     screen.blit(text_max_hp, (155,8))
     
+    #플레이어 이동
     if(MoveLeft):
         player.set_direction(2)
         player.move()
-
     if(MoveRight):
         player.set_direction(3)
         player.move()
-    
     if(MoveUp):
         player.set_direction(0)
         player.move()
-
     if(MoveDown):
         player.set_direction(1)
         player.move()
-        
+   
+   #총알 테스트
+    for bullet in b_list :
+        bullet.move()
+        if(bullet.hit_del(player)):
+            b_list.remove(bullet)
+            del(bullet)
+        else:
+            pg.draw.circle(screen, wall, [bullet.get_x(), bullet.get_y()], 8, 0)
 
-    pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 40,65],0)
+
+    pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
     pg.display.flip()
 
