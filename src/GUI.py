@@ -1,6 +1,7 @@
 import pygame as pg
 import Player
 import Bullet
+import Enemy
 
 
 pg.init()
@@ -15,8 +16,9 @@ white = (255,255,255) #기본 색깔
 black = (0,0,0)
 wall = (100,100,100)
 
-player = Player.Player(300,300,10,10)
-b_list = []
+player = Player.Player(300,300,10,10)  #플레이어 객체 생성 
+b_list = [] # 총알 객체 생성 
+e_list = [] # 적 객체 생성 
 
 MoveLeft = False
 MoveRight = False
@@ -31,6 +33,9 @@ mob1_image = pg.image.load("../image/enemy/mob_01.png")
 pg.mixer.init()
 back_music = pg.mixer.Sound('../sound/main.wav')
 back_music.play(-1)
+
+#적 테스트
+e_list.append(Enemy.Enemy(250,250,1,0,100,1,100,100))
 
 while not done :
 
@@ -84,6 +89,8 @@ while not done :
     screen.blit(text_hp_now, (100,8))
     screen.blit(text_max_hp, (155,8))
     
+
+    #플레이어
     #플레이어 이동
     if(MoveLeft):
         player.set_direction(2)
@@ -98,6 +105,9 @@ while not done :
         player.set_direction(1)
         player.move(45,65)
 
+    #무적 해제중
+    player.inv_minus()
+
    #총알 list
     for bullet in b_list :
         bullet.move(-30,-30)
@@ -107,9 +117,16 @@ while not done :
         else:
             screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))
             
+    #적 list
+    for enemy in e_list :
+        enemy.move(enemy.get_width(), enemy.get_height())
+        enemy.body_hit(player)
+        
+        pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
+            
 
     if(player.death()):
-        done = True #죽었을 때 어떻게 할지 구현해야 함 
+        pass#done = True #죽었을 때 어떻게 할지 구현해야 함 
     pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
     pg.display.flip()

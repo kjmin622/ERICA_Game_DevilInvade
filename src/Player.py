@@ -5,6 +5,7 @@ class Player(Move) :
     hp = 10         #체력, 초기값 10
     power = 1       # 공격력, 초기값 1
     at_speed = 1    # 공격속도, 초기값 1
+    inv = 0
     
     def __init__(self,x,y,direction,speed):
         print("player_init")
@@ -25,10 +26,17 @@ class Player(Move) :
 
     def get_as(self):
         return self.at_speed
-    
+
     #값 추가
     def add_hp(self, value):
-        self.hp += value
+
+        if(value<=0):
+            if(self.inv==0):
+                self.hp += value
+                self.invincible(12)
+        else :
+            self.hp += value
+
         if(self.hp > self.max_hp) :
             self.hp = self.max_hp
         if(self.hp < 0) :
@@ -63,6 +71,14 @@ class Player(Move) :
             return True
         else:
             return False
+    
+    def inv_minus(self):
+        if(self.inv>0):
+            self.inv -= 1
+
+    def invincible(self,time):
+        self.inv = time
+
 
 
 
