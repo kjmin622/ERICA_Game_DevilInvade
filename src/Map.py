@@ -12,7 +12,9 @@ class Room:
 
     def get_room(self):
         return self.room
-
+    
+    def get_door(self):
+        return self.door
 
 def map1() :
     f = False
