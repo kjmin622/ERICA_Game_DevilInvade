@@ -28,12 +28,15 @@ def play_game() :
 
     player = Player.Player(300,300,10,10)  #플레이어 객체 생성 
     b_list = [] # 총알 객체 생성 
-    e_list = [] # 적 객체 생성 
+    e_list = [] # 적 객체 생성
+
+    e_list.append(Enemy.Enemy(150,150,1,0,10,1,40,40))
 
     
     #image
     bullet_image = pg.image.load("../image/enemy/BULLET.png")
     mob1_image = pg.image.load("../image/enemy/mob_01.png")
+    mob2_image = pg.image.load("../image/enemy/mob_02.png")
 
     #sound
     pg.mixer.init()
@@ -128,12 +131,13 @@ def play_game() :
         for enemy in e_list :
             enemy.move(enemy.get_width(), enemy.get_height())
             enemy.body_hit(player)
+            screen.blit(mob2_image,(enemy.get_x(), enemy.get_y()))
         
-            pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
+            #pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
             
 
         if(player.death()):
-            pass#done = True #죽었을 때 어떻게 할지 구현해야 함 
+            return 0 #죽었을 때 어떻게 할지 구현해야 함 
         pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
 
         pg.display.flip()
