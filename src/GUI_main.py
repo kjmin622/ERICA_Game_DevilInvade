@@ -1,6 +1,6 @@
 import pygame as pg
 
-def main():
+def main(check):
     pg.init()
 
     size = [720,540]
@@ -22,103 +22,104 @@ def main():
     font_tvn = pg.font.Font("../font/tvn.ttf",110)
 
     #start animation
-    t=15
-    while t!=0 :
-        clock.tick(24)
-        t -= 1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=3
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=10
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=3
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=6
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=3
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        screen.blit(image1,(0,0))
-        pg.display.flip()
-    t=2
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
-    t=4
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        screen.blit(image3,(0,0))
-        pg.display.flip()
-    t=8
-    while t!=0 :
-        clock.tick(24)
-        t-=1
-        pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
-        pg.display.flip()
+    if(check==True):
+        t=15
+        while t!=0 :
+            clock.tick(24)
+            t -= 1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=3
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=10
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=3
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=6
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=3
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            screen.blit(image1,(0,0))
+            pg.display.flip()
+        t=2
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
+        t=4
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            screen.blit(image3,(0,0))
+            pg.display.flip()
+        t=8
+        while t!=0 :
+            clock.tick(24)
+            t-=1
+            pg.draw.rect(screen,(0,0,0),[0,0,720,540],0)
+            pg.display.flip()
 
 
 

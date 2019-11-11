@@ -1,7 +1,9 @@
 import GUI_main
 import GUI_game
 
-action = GUI_main.main()
+action = GUI_main.main(True)
+
+done = False
 
 while action != 0 :
     
@@ -12,5 +14,5 @@ while action != 0 :
 
     if(done):
         break
-    action = GUI_main.main()
+    action = GUI_main.main(False)
     
