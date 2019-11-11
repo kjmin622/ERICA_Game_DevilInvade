@@ -35,6 +35,12 @@ def play_game() :
     
     #image
     bullet_image = pg.image.load("../image/enemy/BULLET.png")
+    ground_image = pg.image.load("../image/background/ground.png")
+    wall_forest_image =pg.image.load("../image/background/wall_forest.png")
+    ldoor_image = pg.image.load("../image/background/door_left.png")
+    rdoor_image = pg.image.load("../image/background/door_right.png")
+    udoor_image = pg.image.load("../image/background/door_up.png")
+    ddoor_image = pg.image.load("../image/background/door_down.png")
     mob1_image = pg.image.load("../image/enemy/mob_01.png")
     mob2_image = pg.image.load("../image/enemy/mob_02.png")
 
@@ -75,20 +81,15 @@ def play_game() :
                 if event.key == pg.K_DOWN:
                     MoveDown = False
     
-        screen.fill(white)
+        screen.blit(ground_image,(0,0))
+        
+        screen.blit(wall_forest_image,(0,0))
 
-        #wall, later, image
-        pg.draw.rect(screen,wall,[0,0,720,70],0)
-        pg.draw.rect(screen,wall,[0,0,70,540],0)
-        pg.draw.rect(screen,wall,[0,470,720,70],0)
-        pg.draw.rect(screen,wall,[650,0,70,540],0)
-
-        #door, later, image
-        pg.draw.rect(screen,black,[320,10,80,60],0)
-        pg.draw.rect(screen,black,[10,230,60,80],0)
-        pg.draw.rect(screen,black,[650,230,60,80],0)
-        pg.draw.rect(screen,black,[320,470,80,60],0)
-
+        screen.blit(ldoor_image,(0,0))
+        screen.blit(rdoor_image,(0,0))
+        screen.blit(udoor_image,(0,0))
+        screen.blit(ddoor_image,(0,0))
+        
         #HP
         text_hp = font_tvn.render("HP:",True,white)
         text_slash = font_tvn.render("/",True,white)
