@@ -23,7 +23,7 @@ class Move:
     def get_speed(self):
         return self.speed
 
-    def move(self, width, height): #플레이어 이동
+    def move(self, width, height):
         if(self.direction == 0):
             self.y-=self.speed
         if(self.direction == 1):
@@ -35,10 +35,8 @@ class Move:
 
         if(self.y > 470-height):
             self.y=470-height
-
         if(self.y < 70-height):
             self.y=70-height
-
         if(self.x<70):
             self.x=70
         if(self.x>650-width):

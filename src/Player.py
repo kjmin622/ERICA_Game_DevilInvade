@@ -6,6 +6,8 @@ class Player(Move) :
     power = 1       # 공격력, 초기값 1
     at_speed = 1    # 공격속도, 초기값 1
     inv = 0
+    width = 45
+    height = 45
     
     def __init__(self,x,y,direction,speed):
         print("player_init")
@@ -26,6 +28,12 @@ class Player(Move) :
 
     def get_as(self):
         return self.at_speed
+
+    def get_width(self):
+        return self.width
+
+    def get_height(self):
+        return self.height
 
     #값 추가
     def add_hp(self, value):

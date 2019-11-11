@@ -2,6 +2,7 @@ import pygame as pg
 import Player
 import Bullet
 import Enemy
+import Map
 
 
 
@@ -29,9 +30,7 @@ def play_game() :
     player = Player.Player(300,300,10,10)  #플레이어 객체 생성 
     b_list = [] # 총알 객체 생성 
     e_list = [] # 적 객체 생성
-
-    e_list.append(Enemy.Enemy(150,150,1,0,10,1,40,40))
-
+    e_list.append(Enemy.Enemy(200,200,1,0,10,1,40,40))
     
     #image
     bullet_image = pg.image.load("../image/enemy/BULLET.png")
@@ -52,6 +51,9 @@ def play_game() :
     #font
     font_tvn = pg.font.Font("../font/tvn.ttf", 50)
 
+    
+    #map test
+    room = Map.Room([True,False,True,False],Map.map1())
 
     while not done :
 
@@ -81,15 +83,19 @@ def play_game() :
                 if event.key == pg.K_DOWN:
                     MoveDown = False
     
-        screen.blit(ground_image,(0,0))
+        screen.blit(ground_image,(0,0)) #땅
+        screen.blit(wall_forest_image,(0,0)) #벽
         
-        screen.blit(wall_forest_image,(0,0))
+        if(not e_list):
+            if(room.get_door()[0]==True):
+                screen.blit(udoor_image,(0,0))
+            if(room.get_door()[1]==True):
+                screen.blit(ddoor_image,(0,0))
+            if(room.get_door()[2]==True):
+                screen.blit(ldoor_image,(0,0))
+            if(room.get_door()[3]==True):
+                screen.blit(rdoor_image,(0,0))
 
-        screen.blit(ldoor_image,(0,0))
-        screen.blit(rdoor_image,(0,0))
-        screen.blit(udoor_image,(0,0))
-        screen.blit(ddoor_image,(0,0))
-        
         #HP
         text_hp = font_tvn.render("HP:",True,white)
         text_slash = font_tvn.render("/",True,white)
@@ -139,6 +145,6 @@ def play_game() :
 
         if(player.death()):
             return 0 #죽었을 때 어떻게 할지 구현해야 함 
-        pg.draw.rect(screen, black, [player.get_x(), player.get_y(), 45,65],0)
+        pg.draw.rect(screen, black, [player.get_x(), player.get_y()-20, 45,65],0)
 
         pg.display.flip()

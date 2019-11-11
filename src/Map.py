@@ -33,11 +33,5 @@ def map1() :
 
     return room
 
-ro = Room([True,True,True,True],map1())
-print(ro.get_room())
-
-
-
-
 
             
