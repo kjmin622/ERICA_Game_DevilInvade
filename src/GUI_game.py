@@ -139,7 +139,6 @@ def play_game() :
     #적 list
         for enemy in e_list :
             enemy.moving(player)
-            enemy.move(enemy.get_width(), enemy.get_height())
             enemy.body_hit(player)
             screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
         
