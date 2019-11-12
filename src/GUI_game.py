@@ -3,6 +3,7 @@ import Player
 import Bullet
 import Enemy
 import Map
+import Skill
 from enemy import Mob1
 
 
@@ -22,18 +23,21 @@ def play_game() :
     wall = (100,100,100)
 
 
-    #이동 명령
+    #key 명령
     MoveLeft = False
     MoveRight = False
     MoveUp = False
     MoveDown = False
+    Skill_1 = False
 
-    player = Player.Player(300,300,10,10)  #플레이어 객체 생성 
+    player = Player.Player(300,300,10,10)  #플레이어 객체 생성
+    skill = Skill.Skill() #스킬 객체 생성  
     b_list = [] # 총알 객체 생성 
     e_list = [] # 적 객체 생성
-
-    e_list.append(Mob1.mob1(200,200))
     
+    #test
+    e_list.append(Mob1.mob1(200,200))
+     
     #image
     bullet_image = pg.image.load("../image/enemy/BULLET.png")
     ground_image = pg.image.load("../image/background/ground.png")
@@ -66,6 +70,8 @@ def play_game() :
                 return True
             
             if event.type == pg.KEYDOWN :# 키 눌렀을 때 
+                if event.key == ord('a'):
+                    Skill_1 = True
                 if event.key == pg.K_LEFT:
                   MoveLeft = True
                 if event.key == pg.K_RIGHT:
@@ -76,6 +82,8 @@ def play_game() :
                     MoveDown = True
 
             if event.type == pg.KEYUP : #//
+                if event.key == ord('a'):
+                    Skill_1 = False
                 if event.key == pg.K_LEFT:
                     MoveLeft = False
                 if event.key == pg.K_RIGHT:
@@ -110,7 +118,22 @@ def play_game() :
     
 
         #플레이어
-        #플레이어 이동
+         #스킬
+        skill.cool_1()
+        if(Skill_1 and skill.get_cooltime()[0]==0):
+            a = skill.position(player,200)
+            for enemy in e_list :
+                skill.skill_1(player,enemy)
+
+            if(player.get_direction()==0 or player.get_direction()==1):
+                pg.draw.rect(screen,wall,[a[0],a[1],45,200],0)
+
+            if(player.get_direction()==2 or player.get_direction()==3):
+                pg.draw.rect(screen,wall,[a[0],a[1],200,45],0)
+
+
+        
+        #이동
         if(MoveLeft):
             player.set_direction(2)
             player.move(45,45)
@@ -123,7 +146,8 @@ def play_game() :
         if(MoveDown):
             player.set_direction(1)
             player.move(45,45)
-
+        
+       
         #무적 해제중
         player.inv_minus()
 
@@ -141,6 +165,9 @@ def play_game() :
             enemy.moving(player)
             enemy.body_hit(player)
             screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
+            if(enemy.death()):
+                e_list.remove(enemy)
+                del(enemy)
         
             #pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
             

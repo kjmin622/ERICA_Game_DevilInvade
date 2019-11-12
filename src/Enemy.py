@@ -10,6 +10,7 @@ class Enemy(Move):
 
     def __init__(self,x,y,direction,speed,hp,damage,width,height):
         super().__init__(x,y,direction,speed)
+        self.hp = hp
         self.width = width
         self.height = height
         self.damage = damage
@@ -19,7 +20,18 @@ class Enemy(Move):
 
     def get_height(self):
         return self.height
+    
+    def add_hp(self, value):
+        self.hp += value
+    
+    def get_hp(self):
+        return self.hp
 
+    def death(self):
+        if(self.hp<=0) :
+            return True
+        else :
+            return False
 
     def body_hit(self, player):
 
