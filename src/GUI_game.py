@@ -24,11 +24,12 @@ def play_game() :
 
 
     #key 명령
+    #move
     MoveLeft = False
     MoveRight = False
     MoveUp = False
     MoveDown = False
-    Skill_1 = False
+    Skill_1 = [False,False,False,False]
 
     player = Player.Player(300,300,10,10)  #플레이어 객체 생성
     skill = Skill.Skill() #스킬 객체 생성  
@@ -45,6 +46,18 @@ def play_game() :
     ddoor_image = pg.image.load("../image/background/door_down.png")
     mob1_image = pg.image.load("../image/enemy/mob_01.png")
     mob2_image = pg.image.load("../image/enemy/mob_02.png")
+    skill1_1_0_image = pg.image.load("../image/skill/skill1_1_0.png")
+    skill1_1_1_image = pg.image.load("../image/skill/skill1_1_1.png")
+    skill1_1_2_image = pg.image.load("../image/skill/skill1_1_2.png")
+    skill1_1_3_image = pg.image.load("../image/skill/skill1_1_3.png")
+
+    skill1_2_image = pg.image.load("../image/skill/skill1_2.png")
+    
+    #skill global
+    sub_d = 0
+    skill1_time = 0
+    skill1_a = [0,0]
+    skill1_e = []
 
     #sound
     pg.mixer.init()
@@ -69,7 +82,13 @@ def play_game() :
             
             if event.type == pg.KEYDOWN :# 키 눌렀을 때 
                 if event.key == ord('a'):
-                    Skill_1 = True
+                    Skill_1[2] = True
+                elif event.key == ord('w'):
+                    Skill_1[0] = True
+                elif event.key == ord('s'):
+                    Skill_1[1] = True
+                elif event.key == ord('d'):
+                    Skill_1[3] = True
                 if event.key == pg.K_LEFT:
                   MoveLeft = True
                 if event.key == pg.K_RIGHT:
@@ -81,7 +100,13 @@ def play_game() :
 
             if event.type == pg.KEYUP : #//
                 if event.key == ord('a'):
-                    Skill_1 = False
+                    Skill_1[2] = False
+                if event.key == ord('w'):
+                    Skill_1[0] = False
+                if event.key == ord('s'):
+                    Skill_1[1] = False
+                if event.key == ord('d'):
+                    Skill_1[3] = False
                 if event.key == pg.K_LEFT:
                     MoveLeft = False
                 if event.key == pg.K_RIGHT:
@@ -114,22 +139,49 @@ def play_game() :
         screen.blit(text_hp_now, (100,8))
         screen.blit(text_max_hp, (155,8))
     
+        #적########################################################
+        for enemy in e_list :
+            enemy.moving(player)
+            enemy.body_hit(player)
+            screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
+            if(enemy.death()):
+                e_list.remove(enemy)
+                del(enemy)
 
         #플레이어###################################################
          #스킬
+         #스킬 1
         skill.cool_1()
-        if(Skill_1 and skill.get_cooltime()[0]==0):
-            a = skill.position(player,200)
+        if((Skill_1[0] or Skill_1[1]) and skill.get_cooltime()[0]==0):
+            sub_d = (Skill_1[1] and 1 or 0)
+            player.set_direction(sub_d)
+            skill1_a = skill.position(player,200)
             for enemy in e_list :
-                skill.skill_1(player,enemy)
+                if(skill.skill_1(player,enemy)):
+                    skill1_e.append([enemy.get_x()+enemy.get_width()-15, enemy.get_y()+enemy.get_height()-55])
+            skill.make_cool_1(player)
+            skill1_time = 3
 
-            if(player.get_direction()==0 or player.get_direction()==1):
-                pg.draw.rect(screen,wall,[a[0],a[1],45,200],0)
+        if((Skill_1[2] or Skill_1[3]) and skill.get_cooltime()[0]==0):
+            sub_d = (Skill_1[2] and 2 or 3)
+            player.set_direction(sub_d)
+            skill1_a = skill.position(player,200)
+            for enemy in e_list :
+                if(skill.skill_1(player,enemy)):
+                    skill1_e.append([enemy.get_x()+enemy.get_width()-15, enemy.get_y()+enemy.get_height()-55])
+            skill.make_cool_1(player)
+            skill1_time = 3
 
-            if(player.get_direction()==2 or player.get_direction()==3):
-                pg.draw.rect(screen,wall,[a[0],a[1],200,45],0)
-
-
+        if(skill1_time != 0):
+            if(sub_d<=1):
+                screen.blit(sub_d==1 and skill1_1_1_image or skill1_1_0_image,(skill1_a[0],skill1_a[1]))
+            else:
+                screen.blit(sub_d==2 and skill1_1_2_image or skill1_1_3_image,(skill1_a[0],skill1_a[1]))
+            for e in skill1_e:
+                screen.blit(skill1_2_image, (e[0], e[1]))
+            skill1_time -= 1
+        else:
+            del skill1_e[:]
         
         #이동
         if(MoveLeft):
@@ -160,15 +212,7 @@ def play_game() :
             else:
                 screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))
             
-    #적 list
-        for enemy in e_list :
-            enemy.moving(player)
-            enemy.body_hit(player)
-            screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
-            if(enemy.death()):
-                e_list.remove(enemy)
-                del(enemy)
-        
+           
             #pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
             
 

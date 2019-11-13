@@ -50,16 +50,21 @@ class Skill:
     def cool_1 (self):
         if(self.cooltime[0]>0):
             self.cooltime[0] -= 1
+    
+    def make_cool_1(self, player):
+        self.cooltime[0] = 16 - player.get_as()
 
     def skill_1 (self, player, enemy):
         
         if(self.cooltime[0]==0):
-            self.cooltime[0] = 16 - player.get_as()
             if(player.get_direction() == 0 or player.get_direction() == 1):
                 if(self.attack(player,enemy,45,200)):
                     enemy.add_hp(-(player.get_power()+(self.skill_lv[0]-1)*0.3))
+                    return True
 
             else:
                 if(self.attack(player,enemy,200,45)):
                     enemy.add_hp(-(player.get_power()+(self.skill_lv[0]-1)*0.3))
+                    return True
+        return False
 
