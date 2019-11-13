@@ -34,9 +34,6 @@ def play_game() :
     skill = Skill.Skill() #스킬 객체 생성  
     b_list = [] # 총알 객체 생성 
     e_list = [] # 적 객체 생성
-    
-    #test
-    e_list.append(Mob1.mob1(200,200))
      
     #image
     bullet_image = pg.image.load("../image/enemy/BULLET.png")
@@ -59,7 +56,8 @@ def play_game() :
 
     
     #map test
-    room = Map.Room([True,False,True,False],Map.map1())
+    room = Map.Room([True,False,True,False])
+    e_list = room.get_e_list()
 
     while not done :
 
@@ -117,7 +115,7 @@ def play_game() :
         screen.blit(text_max_hp, (155,8))
     
 
-        #플레이어
+        #플레이어###################################################
          #스킬
         skill.cool_1()
         if(Skill_1 and skill.get_cooltime()[0]==0):
@@ -151,6 +149,8 @@ def play_game() :
         #무적 해제중
         player.inv_minus()
 
+        ########################################################
+        
         #총알 list
         for bullet in b_list :
             bullet.move(-30,-30)
