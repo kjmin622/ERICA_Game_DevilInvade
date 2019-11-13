@@ -50,8 +50,8 @@ def play_game() :
     skill1_1_1_image = pg.image.load("../image/skill/skill1_1_1.png")
     skill1_1_2_image = pg.image.load("../image/skill/skill1_1_2.png")
     skill1_1_3_image = pg.image.load("../image/skill/skill1_1_3.png")
-
     skill1_2_image = pg.image.load("../image/skill/skill1_2.png")
+    player0_image = pg.image.load("../image/player/player.png")
     
     #skill global
     sub_d = 0
@@ -200,6 +200,12 @@ def play_game() :
        
         #무적 해제중
         player.inv_minus()
+        
+        #죽음
+        if(player.death()):
+            return 0 #죽었을 때 어떻게 할지 구현해야 함
+        
+        screen.blit(player0_image,(player.get_x(), player.get_y()-20))
 
         ########################################################
         
@@ -210,15 +216,8 @@ def play_game() :
                 b_list.remove(bullet)
                 del(bullet)
             else:
-                screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))
-            
-           
-            #pg.draw.rect(screen,black,[enemy.get_x(), enemy.get_y(), enemy.get_width(), enemy.get_height()],0)
-            
+                screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))            
 
-        if(player.death()):
-            return 0 #죽었을 때 어떻게 할지 구현해야 함
-
-        pg.draw.rect(screen, black, [player.get_x(), player.get_y()-20, 45,65],0)
-
+        
+       
         pg.display.flip()
