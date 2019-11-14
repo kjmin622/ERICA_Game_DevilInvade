@@ -196,7 +196,11 @@ def play_game() :
         if(MoveDown):
             player.set_direction(1)
             player.move(45,45)
-        
+       
+       #문에 닿았니?
+        touchdoor = room.enter_door(player, e_list)
+        if(touchdoor!=-1):
+            print(touchdoor)
        
         #무적 해제중
         player.inv_minus()

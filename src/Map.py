@@ -25,7 +25,7 @@ class Room:
         return self.e_list
 
     def enter_door(self, player,e_list):
-        if(not e_list):
+        if(e_list):
             return -1
 
         d0 = [300,70]
@@ -33,6 +33,7 @@ class Room:
         d1 = [300,450]
         d3 = [650,200]
 
+       
         if(Crash.One(player.get_x(), player.get_y(), d0[0], d0[1], player.get_width(), player.get_height(), 50,0)
                 and self.door[0]):
             return 0
