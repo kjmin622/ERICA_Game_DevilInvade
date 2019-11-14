@@ -147,7 +147,7 @@ def play_game() :
             #특수효과들
             enemy.moving(player)
             enemy.shot(player,b_list)
-            enemy.create(e_list)
+            enemy.create(e_list, b_list, player)
             #######################################
             Crash.E_bump_list(enemy,e_list)
             enemy.body_hit(player)
@@ -221,15 +221,13 @@ def play_game() :
 
         ########################################################
         
-        #총알 list
+        #총알 list##############################################
         for bullet in b_list :
-            bullet.move(-30,-30)
             if(bullet.hit_del(player)):
                 b_list.remove(bullet)
                 del(bullet)
             else:
-                screen.blit(bullet_image,(bullet.get_x(),bullet.get_y()))            
-
+                screen.blit(bullet_image,(bullet.get_x()-3,bullet.get_y()-3))
         
        
         pg.display.flip()

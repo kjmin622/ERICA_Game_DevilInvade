@@ -10,7 +10,7 @@ class mob3(Enemy):
     delay = 60
     
     def __init__(self,x,y):
-        super().__init__(x,y,1,3,6,1,30,20)
+        super().__init__(x,y,1,3,4,1,30,20)
 
     def get_image(self):
         return self.image
@@ -40,7 +40,7 @@ class mob3(Enemy):
                 else:
                     d = 0
             
-            b_list.append(Bullet(s_x,s_y,d,20,1))
+            b_list.append(Bullet(s_x,s_y,p_x+22.5,p_y+30,15,1))
             self.delay = 50
 
 

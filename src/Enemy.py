@@ -45,7 +45,7 @@ class Enemy(Move):
     def moving(self, player):
         pass
 
-    def create(self, e_list):
+    def create(self, e_list, b_list, player):
         pass
 
     def shot(self,player,b_list):
