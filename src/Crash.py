@@ -1,5 +1,5 @@
 
-def One(ax,ay, bx, by, a_width, a_height, b_width, b_height): #1차원, 2차원 충돌
+def One(ax,ay, bx, by, a_width, a_height, b_width, b_height): #2차원, 2차원 충돌
     s_x_l = ax
     s_x_r = ax+a_width
 
@@ -30,15 +30,24 @@ def E_bump(enemy1,enemy2):
     if(One(enemy1.get_x(),enemy1.get_y(),enemy2.get_x(),enemy2.get_y(),
         enemy1.get_width(),enemy1.get_height(), enemy2.get_width(), enemy2.get_height())):
             
-            d = Where(enemy1,enemy2)
+            d = enemy1.get_direction()
+            w,h = enemy1.get_width(), enemy1.get_height()
             if d==0 :
-                enemy1.set_y(enemy2.get_y()+enemy2.get_height())
+                enemy1.set_direction(1)
+                enemy1.move(w,h)
+                enemy1.set_direction(0)
             if d==1 :
-                enemy1.set_y(enemy2.get_y()-enemy1.get_height())
+                enemy1.set_direction(0)
+                enemy1.move(w,h)
+                enemy1.set_direction(1)
             if d==2 :
-                enemy1.set_x(enemy2.get_x()-enemy1.get_width())
+                enemy1.set_direction(3)
+                enemy1.move(w,h)
+                enemy1.set_direction(2)
             if d==3 :
-                enemy1.set_x(enemy2.get_x()+enemy2.get_width())
+                enemy1.set_direction(2)
+                enemy1.move(w,h)
+                enemy1.set_direction(3)
 
 
 def E_bump_list(enemy1,e_list):

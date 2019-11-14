@@ -41,4 +41,17 @@ class Enemy(Move):
             return True
         
         return False
+
+    def moving(self, player):
+        pass
+
+    def create(self, e_list):
+        pass
+
+    def shot(self,player,b_list):
+        pass
+    
+
+
+    
  

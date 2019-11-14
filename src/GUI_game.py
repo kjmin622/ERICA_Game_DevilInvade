@@ -6,6 +6,8 @@ import Map
 import Skill
 import Crash
 from enemy import Mob1
+from enemy import Mob2
+from enemy import Mob3
 
 
 
@@ -142,9 +144,12 @@ def play_game() :
     
         #적########################################################
         for enemy in e_list :
+            #특수효과들
             enemy.moving(player)
+            enemy.shot(player,b_list)
+            enemy.create(e_list)
+            #######################################
             Crash.E_bump_list(enemy,e_list)
-            Crash.E_bump(enemy,player)
             enemy.body_hit(player)
             screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
             if(enemy.death()):

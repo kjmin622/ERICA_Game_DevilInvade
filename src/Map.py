@@ -1,4 +1,6 @@
 from enemy import Mob1
+from enemy import Mob2
+from enemy import Mob3
 from MapList import *
 import random
 import Crash
