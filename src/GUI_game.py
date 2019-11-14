@@ -4,6 +4,7 @@ import Bullet
 import Enemy
 import Map
 import Skill
+import Crash
 from enemy import Mob1
 
 
@@ -142,6 +143,8 @@ def play_game() :
         #적########################################################
         for enemy in e_list :
             enemy.moving(player)
+            Crash.E_bump_list(enemy,e_list)
+            Crash.E_bump(enemy,player)
             enemy.body_hit(player)
             screen.blit(pg.image.load(enemy.get_image()),(enemy.get_x(), enemy.get_y()))
             if(enemy.death()):

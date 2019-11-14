@@ -30,7 +30,6 @@ class Skill:
 
 
     def attack(self,player,enemy,ww,hh):
-
         box = self.position(player, 200)
         sx = box[0]
         sy = box[1]
