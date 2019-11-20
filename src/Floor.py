@@ -58,6 +58,25 @@ def boxcheck(arr):
                 return True
     return False
 
+def bosscheck(arr):
+    bossroom=[]
+    for i in range(5):
+        for k in range(6):
+            count =0
+            if([i,k]!=[2,2]):
+                direction = [[1,0],[-1,0],[0,1],[0,-1]]
+                for d in direction:
+                    a = i + d[0]
+                    b = k + d[1]
+                    if(a<0 or a>=5 or b<0 or b>=6):
+                        continue
+                    
+                    if(arr[a][b]):
+                        count += 1
+                if(count==1):
+                    bossroom.append([i,k])                
+    return bossroom
+
 class Floor:
     floor_init=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, 방 있으면 True
     floor_room=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, foor_init에서 True의 자리에 room객체 생성 
@@ -83,6 +102,24 @@ class Floor:
             painter(arr,False)
             arr = FloorInit(arr)
             count = counter(arr)
+        
+        self.floor_init = arr
+
+
+        bossroom_position = random.choice(bosscheck(self.floor_init))
+        
+        for i in range(5):
+            for k in range(6):
+                if [i,k] == bossroom_position :
+                    print('#', end="")
+                elif [i,k] == [2,2] :
+                    print('$', end="")
+                elif arr[i][k] :
+                    print('@', end="")
+                else:
+                    print(' ', end="")
+            print()
+        
 
          
 
