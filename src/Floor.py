@@ -20,17 +20,43 @@ def FloorInit(arr):
                     continue
                 check[i][j] == True
 
-                if(random.choice([True,True,False])):
+                if(random.randrange(0,100001)>20000):
                     continue
                 
                 queue.append([i,j])
                 arr[i][j] = True
-                count += 1
-            if(count>10):
+            if(counter(arr) >= 8):
                 break
             del queue[0]
 
-        return arr, count
+        return arr
+
+def counter(arr):
+    count = 0
+    for i in range(5):
+        for k in range(6):
+            if arr[i][k] :
+                count+=1
+    return count
+
+def painter(arr,x):
+    check = False
+    if(not arr[0]):
+        check = True
+
+    for i in range(5):
+        for k in range(6):
+            if check:
+                arr[i].append(x)
+            arr[i][k] = x
+            
+
+def boxcheck(arr):
+    for i in range(4):
+        for k in range(5):
+            if(arr[i][k] and arr[i][k+1] and arr[i+1][k] and arr[i+1][k+1]):
+                return True
+    return False
 
 class Floor:
     floor_init=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, 방 있으면 True
@@ -49,25 +75,16 @@ class Floor:
     '''
     def __init__(self):
         arr = [[],[],[],[],[]]
-        for i in range(5):
-            for k in range(6):
-                arr[i].append(False)
 
-        arr, count = FloorInit(arr)
+        count = 0
+        painter(arr,False)
 
-        while(count<6):
-            arr, count = FloorInit(arr)
+        while(count<6 or boxcheck(arr)):
+            painter(arr,False)
+            arr = FloorInit(arr)
+            count = counter(arr)
 
-        for i in range(5):
-            for k in range(6):
-                if(arr[i][k]):
-                    print('@',end="")
-                else:
-                    print(' ',end="")
-            print('')
-
-    
-                
+         
 
 floor = Floor()
 
