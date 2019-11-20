@@ -63,7 +63,7 @@ def bosscheck(arr):
     for i in range(5):
         for k in range(6):
             count =0
-            if([i,k]!=[2,2]):
+            if([i,k]!=[2,2] and arr[i][k]):
                 direction = [[1,0],[-1,0],[0,1],[0,-1]]
                 for d in direction:
                     a = i + d[0]
@@ -96,30 +96,38 @@ class Floor:
         arr = [[],[],[],[],[]]
 
         count = 0
-        painter(arr,False)
+        painter(arr,False) # 모든 방 False 로 
 
-        while(count<6 or boxcheck(arr)):
-            painter(arr,False)
-            arr = FloorInit(arr)
-            count = counter(arr)
-        
-        self.floor_init = arr
+        while(count<6 or boxcheck(arr)): 
+            painter(arr,False) 
+            arr = FloorInit(arr) # 방 가져오기
+            count = counter(arr) # True 개수
+        self.floor_init = arr # 방 가져오기
 
+        arr2 = [[],[],[],[],[]]
+        bosscheck_arr = bosscheck(self.floor_init) #보스방 후보들
+        bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
+        bosscheck_arr.remove(bossroom_position) # 당첨된 방 제외
+        boss_len = len(bosscheck_arr) #보스방 후보 개수
 
-        bossroom_position = random.choice(bosscheck(self.floor_init))
-        
+        if boss_len>=1 :                                     #보스방 여러개면
+            eventroom_position = random.choice(bosscheck_arr) # 그 중 하나는 이벤트방 
+
+# 방을 표현해보아요
+
+        painter(arr2,0) #모든 방 0으로 표현
         for i in range(5):
             for k in range(6):
-                if [i,k] == bossroom_position :
-                    print('#', end="")
-                elif [i,k] == [2,2] :
-                    print('$', end="")
-                elif arr[i][k] :
-                    print('@', end="")
-                else:
-                    print(' ', end="")
-            print()
-        
+                if self.floor_init[i][k] :
+                    arr2[i][k] = 2 #몹만 있는 기본방
+        arr2[2][2] = 1 #시작방
+        arr2[bossroom_position[0]][bossroom_position[1]] = 3 #보스방
+        if(boss_len>=1):
+            arr2[eventroom_position[0]][eventroom_position[1]] = 4 #이벤트방(있거나 없거나)
+
+        self.floor_room = arr2
+
+                
 
          
 
