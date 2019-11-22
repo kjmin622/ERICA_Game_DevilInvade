@@ -8,5 +8,5 @@
 * RPG로 확장
 
 ## Team members
-* [kjmin622](github.com/kjmin622) : 2019095414 길정민
-* [huskycat1202](github.com/huskycat1202) : 2019052251 이현지
+* [kjmin622](https://github.com/kjmin622) : 2019095414 길정민 email: kjmin622@naver.com
+* [huskycat1202](https://github.com/huskycat1202) : 2019052251 이현지 email: annie991202@naver.com
