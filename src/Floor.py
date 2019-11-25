@@ -77,10 +77,21 @@ def bosscheck(arr):
                     bossroom.append([i,k])                
     return bossroom
 
+
+def doorcheck(arr, i, j):
+    door = [False, False, False, False]
+    if(i-1>=0 and arr[i-1][j] == True):door[0]=True
+    if(i+1<5 and arr[i+1][j] == True):door[1]=True
+    if(j-1>=0 and arr[i][j-1] == True):door[2]=True
+    if(j+1<6 and arr[i][j+1] == True):door[3]=True
+    return door
+
 class Floor:
     floor_init=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, 방 있으면 True
     floor_room=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, foor_init에서 True의 자리에 room객체 생성 
     
+    player_position = [2,2]
+
     '''
     random.choice([1,2...])  : [] 리스트에 있는 것중 하나 선택
 
@@ -119,19 +130,35 @@ class Floor:
         for i in range(5):
             for k in range(6):
                 if self.floor_init[i][k] :
-                    arr2[i][k] = 2 #몹만 있는 기본방
-        arr2[2][2] = 1 #시작방
-        arr2[bossroom_position[0]][bossroom_position[1]] = 3 #보스방
+                    arr2[i][k] = Room(doorcheck(self.floor_init,i,k)) #몹만 있는 기본방
+        arr2[2][2] = Room(doorcheck(self.floor_init,i,k))  #시작방
+        arr2[bossroom_position[0]][bossroom_position[1]] = Room(doorcheck(self.floor_init,i,k)) #보스방
         if(boss_len>=1):
-            arr2[eventroom_position[0]][eventroom_position[1]] = 4 #이벤트방(있거나 없거나)
+            arr2[eventroom_position[0]][eventroom_position[1]] = Room(doorcheck(self.floor_init,i,k)) #이벤트방(있거나 없거나)
 
         self.floor_room = arr2
 
-                
+    def get_map(self):
+        return self.floor_init
+
+    def map_move(self, where):
+        i = self.player_position[0]
+        j = self.player_position[1]
+        
+        if(where == 0):i-=1
+        elif(where == 1):i+=1
+        elif(where == 2):j-=1
+        elif(where == 3):j+=1
+        else:pass
+
+        self.player_position = [i,j]
+
+        return self.floor_room[i][j]
+
+        
 
          
 
 floor = Floor()
-
 
 
