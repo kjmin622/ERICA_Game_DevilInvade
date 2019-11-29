@@ -10,11 +10,13 @@ from Player import *
 class Room:
     room = [[]]
     door = [False,False, False,False]
+    elist = []
     e_list = []
     map_list = [map1()]
+    visited = False
 
     def __init__(self,in_door):
-        self.room, self.e_list = random.choice(self.map_list)
+        self.room, self.elist = random.choice(self.map_list)
         self.door = in_door
 
     def get_room(self):
@@ -23,8 +25,23 @@ class Room:
     def get_door(self):
         return self.door
 
+    def visit(self):
+        self.visited = True
+
+    def create_enemy(self):
+        self.e_list = []
+        if(not self.visited):
+            for list in self.elist:
+                self.e_list.append(list[0](list[1],list[2]))
+
     def get_e_list(self):
-        return self.e_list
+        return self.e_list[:]
+
+    def set_elist(self,elist):
+        self.elist = elist
+
+    def set_e_list(self, e_list):
+        self.e_list = e_list
 
     def enter_door(self, player,e_list):
         if(e_list):

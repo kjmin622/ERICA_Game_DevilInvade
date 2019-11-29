@@ -156,8 +156,7 @@ def play_game() :
             Room_now = Floor_now.map_move(touchdoor, player)
             Room_now.create_enemy()
             Room_now.visit()
-            player.invincible(20)
-            
+            print(Room_now.get_e_list())
 
 
         #적#########################################################

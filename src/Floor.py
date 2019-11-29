@@ -86,6 +86,9 @@ def doorcheck(arr, i, j):
     if(j+1<6 and arr[i][j+1] == True):door[3]=True
     return door
 
+
+
+############################################
 class Floor:
     floor_init=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, 방 있으면 True
     floor_room=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, foor_init에서 True의 자리에 room객체 생성 
@@ -131,34 +134,72 @@ class Floor:
             for k in range(6):
                 if self.floor_init[i][k] :
                     arr2[i][k] = Room(doorcheck(self.floor_init,i,k)) #몹만 있는 기본방
-        arr2[2][2] = Room(doorcheck(self.floor_init,i,k))  #시작방
-        arr2[bossroom_position[0]][bossroom_position[1]] = Room(doorcheck(self.floor_init,i,k)) #보스방
+        
+        arr2[2][2] = Room(doorcheck(self.floor_init,2,2))  #시작방
+        arr2[2][2].set_elist([]) #처음 방 몹 ㄴㄴ
+        
+        arr2[bossroom_position[0]][bossroom_position[1]] = Room(doorcheck(self.floor_init,bossroom_position[0],bossroom_position[1])) #보스방
         if(boss_len>=1):
-            arr2[eventroom_position[0]][eventroom_position[1]] = Room(doorcheck(self.floor_init,i,k)) #이벤트방(있거나 없거나)
+            arr2[eventroom_position[0]][eventroom_position[1]] = Room(doorcheck(self.floor_init,eventroom_position[0],eventroom_position[1])) #이벤트방(있거나 없거나)
 
         self.floor_room = arr2
 
     def get_map(self):
         return self.floor_init
 
-    def map_move(self, where):
+    def get_where(self):
+        return self.player_position
+
+    def get_room(self):
+        return self.floor_room[self.player_position[0]][self.player_position[1]]
+
+    def map_move(self, where, player):
         i = self.player_position[0]
         j = self.player_position[1]
         
-        if(where == 0):i-=1
-        elif(where == 1):i+=1
-        elif(where == 2):j-=1
-        elif(where == 3):j+=1
+        if(where == 0):
+            i-=1
+            player.set_y(395)
+
+        elif(where == 1):
+            i+=1
+            player.set_y(80)
+
+        elif(where == 2):
+            j-=1
+            player.set_x(555)
+
+        elif(where == 3):
+            j+=1
+            player.set_x(60)
+
         else:pass
 
         self.player_position = [i,j]
 
-        return self.floor_room[i][j]
+        return self.get_room()
 
-        
-
-         
-
+''' 
 floor = Floor()
+player = Player(100,100,1,1)
+
+map = floor.get_map()
 
 
+while(True):
+    for i in range(5):
+        for k in range(6):
+            if(floor.get_where()[0] == i and floor.get_where()[1] == k ):print('a',end="")
+            else:print('x' if map[i][k] else '0', end="")
+        print()
+    
+    room = floor.get_room()
+    print(room.get_e_list())
+    print(room)
+    w = int(input())
+    if(w==-1):
+        room.set_e_list([])
+    else:floor.map_move(w,player)
+
+
+    '''
