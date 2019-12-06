@@ -134,16 +134,9 @@ class Floor:
         for i in range(5):
             for k in range(6):
                 if self.floor_init[i][k] :
-                    arr2[i][k] = Room(doorcheck(self.floor_init,i,k)) #몹만 있는 기본방
+                    arr2[i][k] = Room(doorcheck(self.floor_init,i,k)) #
         
-        arr2[2][2] = Room(doorcheck(self.floor_init,2,2))  #시작방
-        arr2[2][2].set_elist([]) #처음 방 몹 ㄴㄴ
-        
-        arr2[bossroom_position[0]][bossroom_position[1]] = Room(doorcheck(self.floor_init,bossroom_position[0],bossroom_position[1])) #보스방
-        if(boss_len>=1):
-            arr2[eventroom_position[0]][eventroom_position[1]] = Room(doorcheck(self.floor_init,eventroom_position[0],eventroom_position[1])) #이벤트방(있거나 없거나)
-        
-        self.boss_position = [bossroom_position[0],bossroom_position[1]]
+        self.boss_position = [bossroom_position[0],bossroom_position[1]] #보스방 설정
         self.floor_room = arr2
 
     def get_map(self):
