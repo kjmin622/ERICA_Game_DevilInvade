@@ -94,7 +94,8 @@ class Floor:
     floor_room=[[],[],[],[],[]] # 각 리스트의 최대 길이는 6, foor_init에서 True의 자리에 room객체 생성 
     
     player_position = [2,2]
-
+    
+    boss_position = []
     '''
     random.choice([1,2...])  : [] 리스트에 있는 것중 하나 선택
 
@@ -141,7 +142,8 @@ class Floor:
         arr2[bossroom_position[0]][bossroom_position[1]] = Room(doorcheck(self.floor_init,bossroom_position[0],bossroom_position[1])) #보스방
         if(boss_len>=1):
             arr2[eventroom_position[0]][eventroom_position[1]] = Room(doorcheck(self.floor_init,eventroom_position[0],eventroom_position[1])) #이벤트방(있거나 없거나)
-
+        
+        self.boss_position = [bossroom_position[0],bossroom_position[1]]
         self.floor_room = arr2
 
     def get_map(self):
@@ -178,7 +180,9 @@ class Floor:
         self.player_position = [i,j]
 
         return self.get_room()
-
+    
+    def bossRoom(self):
+        return self.player_position == self.boss_position
 ''' 
 floor = Floor( map1)
 player = Player(100,100,1,1)

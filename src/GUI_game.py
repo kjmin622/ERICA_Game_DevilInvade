@@ -84,6 +84,7 @@ def play_game() :
     Floor_now = Floor.Floor()
     Room_now = Floor_now.get_room()
     Floor_level = 800
+    boss_room = False
     ##########################################################
     ## 플레이 시작
     ##########################################################
@@ -158,9 +159,19 @@ def play_game() :
         touchdoor = Room_now.enter_door(player, e_list)
         if(touchdoor!=-1): #맵이동
             Room_now = Floor_now.map_move(touchdoor, player)
-            if(Room_now.create_enemy()):
+            
+            if(Floor_now.bossRoom() and Room_now.create_enemy()):
+                boss_room = True
+                e_list.append(Mob3.mob3(100,100))
+
+            elif(Room_now.create_enemy()):
                 e_list = MapList.map1(Floor_level)
                 Floor_level -= 2
+                boss_room = False
+
+            else :
+                boss_room = False
+
             h_list = []
             player.invincible(60)
 
@@ -273,7 +284,8 @@ def play_game() :
         # back ground
         screen.blit(ground_image,(0,0))
         screen.blit(wall_forest_image,(0,0))
-
+        if(boss_room):
+            screen.blit(boss_cover_image,(0,0))
         #######################################################
         # door
         if(not e_list):
