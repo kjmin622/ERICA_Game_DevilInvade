@@ -9,6 +9,7 @@ import Crash
 import Floor
 import random
 import Heart
+import time
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
@@ -163,6 +164,9 @@ def play_game() :
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
                 boss_room = True
                 e_list.append(Mob3.mob3(100,100))
+            
+            elif(Floor_now.bossRoom()):
+                boss_room = True
 
             elif(Room_now.create_enemy()):
                 e_list = MapList.map1(Floor_level)
@@ -298,6 +302,14 @@ def play_game() :
             if(Room_now.get_door()[3]==True):
                 screen.blit(rdoor_image,(0,0))
 
+        #######################################################
+        # Floor door ## 50,50   335, 245
+        if(boss_room and not e_list):
+            pg.draw.rect(screen,(0,0,0),(335,245,50,50))
+            if(Crash.One(player.get_x(),player.get_y(),360,270,player.get_width(),player.get_height(),1,1)):
+                Floor_move = True
+                boss_room = False
+
         ########################################################
         # HP
         text_hp = font_tvn.render("HP:",True,white)
@@ -309,7 +321,11 @@ def play_game() :
         screen.blit(text_slash,(130,8))
         screen.blit(text_hp_now, (100,8))
         screen.blit(text_max_hp, (155,8))
+       
+        ########################################################
+        # 지도
         
+
         ########################################################
         # heart
         for heart in h_list:
