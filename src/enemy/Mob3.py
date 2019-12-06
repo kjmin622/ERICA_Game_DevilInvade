@@ -40,7 +40,7 @@ class mob3(Enemy):
                 else:
                     d = 0
             
-            b_list.append(Bullet(s_x,s_y,p_x+22.5,p_y+30,15,1))
+            b_list.append(Bullet(s_x,s_y,p_x+22.5,p_y+30,10,1))
             self.delay = 50
 
 

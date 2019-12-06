@@ -11,7 +11,7 @@ class mob2(Enemy):
     delay = 150
     
     def __init__(self,x,y):
-        super().__init__(x,y,1,0,15,2,40,40)
+        super().__init__(x,y,1,0,6,2,40,40)
 
     def get_image(self):
         return self.image
@@ -22,7 +22,7 @@ class mob2(Enemy):
         arr = [[s_x+500,s_y],[s_x-500,s_y],[s_x,s_y+500],[s_x,s_y-500],
                 [s_x+500,s_y+500],[s_x-500,s_y+500],[s_x+500,s_y-500],[s_x-500,s_y-500]]
         for i in arr :
-            b_list.append(Bullet(s_x+20,s_y+20,i[0],i[1],12,1))
+            b_list.append(Bullet(s_x+20,s_y+20,i[0],i[1],8,1))
 
     def create(self, e_list, b_list, player):
         if(self.delay>0):

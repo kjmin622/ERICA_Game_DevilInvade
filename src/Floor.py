@@ -171,7 +171,7 @@ class Floor:
 
         elif(where == 3):
             j+=1
-            player.set_x(60)
+            player.set_x(80)
 
         else:pass
 
@@ -180,7 +180,7 @@ class Floor:
         return self.get_room()
 
 ''' 
-floor = Floor()
+floor = Floor( map1)
 player = Player(100,100,1,1)
 
 map = floor.get_map()

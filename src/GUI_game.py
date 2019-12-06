@@ -3,6 +3,7 @@ import Player
 import Bullet
 import Enemy
 import Map
+import MapList
 import Skill
 import Crash
 import Floor
@@ -79,7 +80,7 @@ def play_game() :
     Floor_move = False  # True이면 Floor 새로 받아오기
     Floor_now = Floor.Floor()
     Room_now = Floor_now.get_room()
-
+    Floor_level = 800
     ##########################################################
     ## 플레이 시작
     ##########################################################
@@ -154,14 +155,17 @@ def play_game() :
         touchdoor = Room_now.enter_door(player, e_list)
         if(touchdoor!=-1): #맵이동
             Room_now = Floor_now.map_move(touchdoor, player)
-            Room_now.create_enemy()
-            Room_now.visit()
-            player.invincible(20)
+            if(Room_now.create_enemy()):
+                e_list = MapList.map1(Floor_level)
+                Floor_level -= 2
+
+            player.invincible(60)
+
+        Room_now.visit()
             
 
 
         #적#########################################################
-        e_list = Room_now.get_e_list()
 
         for enemy in e_list :
             #특수효과들
@@ -175,7 +179,6 @@ def play_game() :
                 e_list.remove(enemy)
                 del(enemy)
 
-        Room_now.set_e_list(e_list)
         #플레이어#########################################################
         ##스킬 1
         #
