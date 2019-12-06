@@ -25,15 +25,6 @@ class Room:
     def create_enemy(self):
         return not self.visited
 
-    def get_e_list(self):
-        return self.e_list[:]
-
-    def set_elist(self,elist):
-        self.elist = elist
-
-    def set_e_list(self, e_list):
-        self.e_list = e_list
-
     def enter_door(self, player,e_list):
         if(e_list):
             return -1
