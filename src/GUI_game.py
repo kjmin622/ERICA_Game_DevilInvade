@@ -84,7 +84,7 @@ def play_game() :
     Floor_move = False  # True이면 Floor 새로 받아오기
     Floor_now = Floor.Floor()
     Room_now = Floor_now.get_room()
-    Floor_level = 800
+    Floor_level = 3
     boss_room = False
     ##########################################################
     ## 플레이 시작
@@ -155,6 +155,7 @@ def play_game() :
             Floor_move = False
             Floor_now = Floor.Floor()
             Room_now = Floor_now.get_room()
+            Floor_level += 1
 
         #맵이동
         touchdoor = Room_now.enter_door(player, e_list)
@@ -170,7 +171,6 @@ def play_game() :
 
             elif(Room_now.create_enemy()):
                 e_list = MapList.map1(Floor_level)
-                Floor_level -= 2
                 boss_room = False
 
             else :
