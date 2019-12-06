@@ -321,7 +321,12 @@ def play_game() :
 
         ########################################################
         # player
-        screen.blit(player0_image,(player.get_x(), player.get_y()-20))
+        p_direction = player.get_direction()
+        if(p_direction == 1):screen.blit(player0_image,(player.get_x(), player.get_y()-20))
+        elif(p_direction == 0):screen.blit(player1_image,(player.get_x(), player.get_y()-20))
+        elif(p_direction == 2):screen.blit(player2_image,(player.get_x(), player.get_y()-20))
+        else:screen.blit(player3_image,(player.get_x(), player.get_y()-20))
+
 
         ########################################################
         # bullet
