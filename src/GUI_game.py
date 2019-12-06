@@ -7,6 +7,8 @@ import MapList
 import Skill
 import Crash
 import Floor
+import random
+import Heart
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
@@ -66,7 +68,8 @@ def play_game() :
 
     b_list = [] # 총알 객체 리스트 
     e_list = [] # 적 객체 리스트
-         
+    h_list = [] # 추가생명 리스트
+    
     #skill1
     sub_d = 0
     skill1_time = 0
@@ -158,7 +161,7 @@ def play_game() :
             if(Room_now.create_enemy()):
                 e_list = MapList.map1(Floor_level)
                 Floor_level -= 2
-
+            h_list = []
             player.invincible(60)
 
         Room_now.visit()
@@ -176,6 +179,9 @@ def play_game() :
             Crash.E_bump_list(enemy,e_list) #몬스터끼리 겹치지 않도록
             enemy.body_hit(player) # 몬스터와 플레이어의 피격 판정
             if(enemy.death()): # 몬스터 죽음
+                if(random.randrange(0,10) == 9):
+                    h_list.append(Heart.Heart(enemy.get_x(),enemy.get_y()))
+
                 e_list.remove(enemy)
                 del(enemy)
 
@@ -242,6 +248,12 @@ def play_game() :
         player.inv_minus()
         
        ##########################################################################
+       #하트 먹기
+        for heart in h_list:
+            if(heart.heart_crash(player)):
+                h_list.remove(heart)
+                del(heart)
+       ##########################################################################
         #죽음
         if(player.death()):
             return 0 #죽었을 때 어떻게 할지 구현해야 함
@@ -285,7 +297,12 @@ def play_game() :
         screen.blit(text_slash,(130,8))
         screen.blit(text_hp_now, (100,8))
         screen.blit(text_max_hp, (155,8))
-
+        
+        ########################################################
+        # heart
+        for heart in h_list:
+           #heart_image
+            screen.blit(heart_image,(heart.get_x(),heart.get_y()))
         ########################################################
         # enemy
         for enemy in e_list:
