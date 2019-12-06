@@ -211,7 +211,7 @@ def play_game() :
         skill.cool_1() #스킬 쿨타임 있을 시, 쿨타임 1프레임씩 해제
 
         ###스킬을 상, 하로 썼을 때 and 스킬 쿨타임이 0초일 때
-        if((Skill_1[0] or Skill_1[1]) and skill.get_cooltime()[0]==0):
+        if((Skill_1[0] or Skill_1[1]) and skill.get_cooltime()==0):
             sub_d = Skill_1[1] and 1 or 0
             player.set_direction(sub_d) #스킬의 방향으로 플레이어 방향 변경
             skill1_a = skill.position(player,200) #플레이어가 스킬 쓴 좌표 저장
@@ -228,7 +228,7 @@ def play_game() :
             skill1_time = 3
         
         ### 위의 스킬 좌, 우 버전
-        if((Skill_1[2] or Skill_1[3]) and skill.get_cooltime()[0]==0):
+        if((Skill_1[2] or Skill_1[3]) and skill.get_cooltime()==0):
             sub_d = (Skill_1[2] and 2 or 3)
             player.set_direction(sub_d)
             skill1_a = skill.position(player,200)

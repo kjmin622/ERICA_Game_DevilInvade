@@ -122,11 +122,6 @@ class Floor:
         arr2 = [[],[],[],[],[]]
         bosscheck_arr = bosscheck(self.floor_init) #보스방 후보들
         bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
-        bosscheck_arr.remove(bossroom_position) # 당첨된 방 제외
-        boss_len = len(bosscheck_arr) #보스방 후보 개수
-
-        if boss_len>=1 :                                     #보스방 여러개면
-            eventroom_position = random.choice(bosscheck_arr) # 그 중 하나는 이벤트방 
 
 # 방을 표현해보아요
 
