@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import GUI_main
 import GUI_game
 
