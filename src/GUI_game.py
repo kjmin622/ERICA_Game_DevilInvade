@@ -10,6 +10,7 @@ import Floor
 import random
 import Heart
 import time
+import GUI_menu
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
@@ -63,6 +64,7 @@ def play_game() :
     MoveUp = False
     MoveDown = False
     Skill_1 = [False,False,False,False]
+    menu_input = 0
 
     player = Player.Player(300,300,10,10)  #플레이어 객체 생성
     skill = Skill.Skill() #스킬 객체 생성
@@ -142,7 +144,11 @@ def play_game() :
                     MoveUp = False
                 if event.key == pg.K_DOWN:
                     MoveDown = False
-
+                
+                #menu #################################
+                if event.key == pg.K_ESCAPE:
+                    menu_input = GUI_menu.Menu()
+                    if(menu_input == 2):done = True
     ################################################################
 
 
