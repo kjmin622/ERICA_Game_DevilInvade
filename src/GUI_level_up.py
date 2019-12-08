@@ -12,6 +12,11 @@ def Level_up(player):
 
     white = (255,255,255)
     background = (30,15,0)
+    
+    text1 = font_tvn.render("1",True,white)
+    text2 = font_tvn.render("2",True,white)
+    text3 = font_tvn.render("3",True,white)
+    text4 = font_tvn.render("4",True,white)
 
     while not done :
         clock.tick(24)
@@ -35,5 +40,12 @@ def Level_up(player):
                     player.add_speed(1)
                     done = True
 
+        screen.blit(skill_interface_image,(0,0))
+        screen.blit(text1,(100,320))
+        screen.blit(text2,(270,320))
+        screen.blit(text3,(450,320))
+        screen.blit(text4,(620,320))
+        
+        pg.display.flip()
 
  

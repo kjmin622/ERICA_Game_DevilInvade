@@ -9,9 +9,11 @@ class mob2(Enemy):
 
     image = "../image/enemy/mob_02.png"
     delay = 150
+    level = 1
     
-    def __init__(self,x,y):
-        super().__init__(x,y,1,0,6,2,40,40)
+    def __init__(self,x,y,level):
+        super().__init__(x,y,1,0,6+level*1.5,2,40,40)
+        self.level = level
 
     def get_image(self):
         return self.image
@@ -34,6 +36,6 @@ class mob2(Enemy):
                 self.shoot(player,b_list)
             else:
                 for i in range(random.randrange(1,2)):
-                    e_list.append(Mob3.mob3(self.get_x()+20+i*15,self.get_y()+45))
+                    e_list.append(Mob3.mob3(self.get_x()+20+i*15,self.get_y()+45,self.level))
             
             self.delay = random.randrange(90,120)

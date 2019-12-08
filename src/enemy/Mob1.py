@@ -10,8 +10,8 @@ class mob1(Enemy):
     delay = 5
     move_check = False
      
-    def __init__(self,x,y):
-        super().__init__(x,y,1,2,3,1,10,10)
+    def __init__(self,x,y,level):
+        super().__init__(x,y,1,2,3+level*0.4,1,10,10)
     
     def get_image(self):
         return self.image

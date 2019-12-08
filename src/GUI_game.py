@@ -68,6 +68,9 @@ def play_game() :
     menu_input = 0
 
     player = Player.Player(300,300,10,10)  #플레이어 객체 생성
+    P_level = 0 #레벨
+
+
     skill = Skill.Skill() #스킬 객체 생성
 
     b_list = [] # 총알 객체 리스트 
@@ -147,7 +150,7 @@ def play_game() :
                 
                 #menu #################################
                 if event.key == pg.K_ESCAPE:
-                    menu_input = GUI_menu.Menu(Floor_now,player)
+                    menu_input = GUI_menu.Menu(Floor_now,player,P_level)
                     if(menu_input == 2):done = True
                     MoveLeft = False
                     MoveRight = False
@@ -164,10 +167,11 @@ def play_game() :
         if(Floor_move):
             Floor_move = False
             tmp = Floor_now
-            del(tmp)
-            Floor_now = Floor.Floor()
-            Room_now = Floor_now.get_room()
-            Floor_level += 1
+            del(tmp) #원래 있던 층 메모리 제거
+            Floor_now = Floor.Floor() # 새로운 층
+            Room_now = Floor_now.get_room() # 새로운 시작방
+            Floor_level += 0.3 
+            P_level += 1
             GUI_level_up.Level_up(player)
             MoveLeft = False
             MoveRight = False
@@ -179,16 +183,19 @@ def play_game() :
         touchdoor = Room_now.enter_door(player, e_list)
         if(touchdoor!=-1): #맵이동
             Room_now = Floor_now.map_move(touchdoor, player)
-            
+           
+
+            #이동한 맵이 보스방일 때
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
                 boss_room = True
-                e_list.append(Mob3.mob3(100,100))
+                e_list.append(Mob3.mob3(100,100,P_level))  #임시보스
             
             elif(Floor_now.bossRoom()):
                 boss_room = True
-
+            
+            #이동한 맵이 일반 방일 때 
             elif(Room_now.create_enemy()):
-                e_list = MapList.map1(Floor_level)
+                e_list = MapList.map1(Floor_level,P_level)
                 boss_room = False
 
             else :

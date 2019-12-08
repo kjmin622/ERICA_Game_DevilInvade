@@ -3,11 +3,11 @@ from Player import *
 from Floor import *
 from file_link import *
 
-def Menu(floor, player):
+def Menu(floor, player, level):
     pg.init()
     
     white = (255,255,255)
-
+    darkGray = (10,10,10)
     size = [720,540]
     screen = pg.display.set_mode(size)
     pg.display.set_caption("Devil Invade")
@@ -20,11 +20,12 @@ def Menu(floor, player):
     attack_value = font_tvn.render(str(round(player.get_power(),2)),True, white)
     attack_speed = font_tvn.render(str(round((1.0/player.get_as()),2)),True,white)
     move_speed = font_tvn.render(str(player.get_speed()),True,white)
-    
+    level_ = font_tvn.render(str(level+1),True,darkGray)
+
     a_v = font_tvn.render("공격력: ", True, white)
     a_s = font_tvn.render("공격속도: ",True,white)
     m_s = font_tvn.render("이동속도: ",True,white)
-
+    lv = font_tvn.render("Level: ", True, darkGray)
     
     #지도 만들기
     init_map = floor.get_map()
@@ -69,8 +70,7 @@ def Menu(floor, player):
         screen.blit(m_s,(480,20))
         screen.blit(attack_value,(140,20))
         screen.blit(attack_speed,(380,20))
-        screen.blit(move_speed,(600,20))
-        
+        screen.blit(move_speed,(600,20)) 
         for i in range(5):
             for k in range(6):
                 if(maps[i][k] != [0,0]):
@@ -83,5 +83,8 @@ def Menu(floor, player):
                         color = (200,100,0)
                     
                     pg.draw.rect(screen,color,(maps[i][k][0]+5,maps[i][k][1]+5,94,68))
+
+        screen.blit(lv,(565,490))
+        screen.blit(level_,(665,490))
 
         pg.display.flip()

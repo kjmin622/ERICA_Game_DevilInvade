@@ -9,8 +9,8 @@ class mob3(Enemy):
     image = "../image/enemy/mob_02_bullet.png"
     delay = 60
     
-    def __init__(self,x,y):
-        super().__init__(x,y,1,3,4,1,30,20)
+    def __init__(self,x,y,level):
+        super().__init__(x,y,1,3,4+level*0.5,1,30,20)
 
     def get_image(self):
         return self.image
