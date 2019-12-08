@@ -182,7 +182,7 @@ def play_game() :
             else :
                 boss_room = False
 
-            h_list = []
+            del h_list[:]
             player.invincible(60)
 
         Room_now.visit()
@@ -286,7 +286,9 @@ def play_game() :
         for bullet in b_list :
             if(bullet.hit_del(player)):
                 b_list.remove(bullet)
-                del(bullet)        
+                del(bullet)
+
+        if(not e_list):del b_list[:]
 
         #######################################################
         ## 이미지 출력 (아래에 놓일수록 상단 레이어)

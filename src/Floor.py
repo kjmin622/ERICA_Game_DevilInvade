@@ -25,7 +25,7 @@ def FloorInit(arr):
                 
                 queue.append([i,j])
                 arr[i][j] = True
-            if(counter(arr) >= 8):
+            if(counter(arr) >= 10):
                 break
             del queue[0]
 
@@ -113,7 +113,7 @@ class Floor:
         count = 0
         painter(arr,False) # 모든 방 False 로 
 
-        while(count<6 or boxcheck(arr)): 
+        while(count<8 or boxcheck(arr)): 
             painter(arr,False) 
             arr = FloorInit(arr) # 방 가져오기
             count = counter(arr) # True 개수
