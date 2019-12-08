@@ -45,6 +45,8 @@ class Skill:
     def cool_1 (self):
         if(self.cooltime>0):
             self.cooltime -= 1
+        else:
+            self.cooltime = 0
     
     def make_cool_1(self, player):
         self.cooltime = 16 * player.get_as()

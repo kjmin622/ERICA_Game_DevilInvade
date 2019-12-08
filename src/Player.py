@@ -71,8 +71,8 @@ class Player(Move) :
     def add_as(self,value):
         self.at_speed += value
 
-        if(self.at_speed <= 0):
-            self.at_speed = 1
+        if(self.at_speed <= 0.25):
+            self.at_speed = 0.25
 
     def death(self):
         if(self.hp == 0):

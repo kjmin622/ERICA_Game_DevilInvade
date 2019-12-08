@@ -53,3 +53,6 @@ class Move:
 
     def set_speed(self, s):
         self.speed = s
+
+    def add_speed(self, s):
+        self.speed += s

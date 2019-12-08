@@ -113,17 +113,22 @@ class Floor:
         count = 0
         painter(arr,False) # 모든 방 False 로 
 
-        done_map = True
-        while(done_map):
-            while(count<8 or boxcheck(arr)): 
-                painter(arr,False) 
-                arr = FloorInit(arr) # 방 가져오기
-                count = counter(arr) # True 개수
-            self.floor_init = arr # 방 가져오기
-            bosscheck_arr = bosscheck(self.floor_init) #보스방 후보들
-            if(bosscheck_arr):
-                bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
-                done_map = False
+        painter(arr,False) 
+        arr = FloorInit(arr) # 방 가져오기
+        count = counter(arr) # True 개수
+        bosscheck_arr = bosscheck(arr) #보스방 후보들
+
+        while(count<8 or boxcheck(arr) or not bosscheck_arr): 
+            painter(arr,False) 
+            arr = FloorInit(arr) # 방 가져오기
+            count = counter(arr) # True 개수
+            bosscheck_arr = bosscheck(arr) #보스방 후보들
+
+        self.floor_init = arr # 방 가져오기
+        
+        if(bosscheck_arr):
+            bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
+
 
         arr2 = [[],[],[],[],[]]
 

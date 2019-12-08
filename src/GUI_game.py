@@ -11,6 +11,7 @@ import random
 import Heart
 import time
 import GUI_menu
+import GUI_level_up
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
@@ -101,7 +102,6 @@ def play_game() :
         for event in pg.event.get():
             if event.type == pg.QUIT : #종료
                 done = True
-                return True
             
             if event.type == pg.KEYDOWN :# 키 눌렀을 때
                 #skill 1###############################
@@ -149,6 +149,10 @@ def play_game() :
                 if event.key == pg.K_ESCAPE:
                     menu_input = GUI_menu.Menu(Floor_now,player)
                     if(menu_input == 2):done = True
+                    MoveLeft = False
+                    MoveRight = False
+                    MoveUp = False
+                    MoveDown = False
     ################################################################
 
 
@@ -164,6 +168,12 @@ def play_game() :
             Floor_now = Floor.Floor()
             Room_now = Floor_now.get_room()
             Floor_level += 1
+            GUI_level_up.Level_up(player)
+            MoveLeft = False
+            MoveRight = False
+            MoveUp = False
+            MoveDown = False
+
 
         #맵이동
         touchdoor = Room_now.enter_door(player, e_list)
@@ -279,7 +289,7 @@ def play_game() :
        ##########################################################################
         #죽음
         if(player.death()):
-            return 0 #죽었을 때 어떻게 할지 구현해야 함
+            done = True #죽었을 때 어떻게 할지 구현해야 함
         
         
         ########################################################
@@ -374,3 +384,5 @@ def play_game() :
         ########################################################
 
         pg.display.flip()
+
+    back_music.stop()
