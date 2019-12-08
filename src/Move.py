@@ -35,8 +35,8 @@ class Move:
 
         if(self.y > 470-height):
             self.y=470-height
-        if(self.y < 70-height):
-            self.y=70-height
+        if(self.y < 85-height):
+            self.y=85-height
         if(self.x<70):
             self.x=70
         if(self.x>650-width):
