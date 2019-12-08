@@ -147,7 +147,7 @@ def play_game() :
                 
                 #menu #################################
                 if event.key == pg.K_ESCAPE:
-                    menu_input = GUI_menu.Menu()
+                    menu_input = GUI_menu.Menu(Floor_now,player)
                     if(menu_input == 2):done = True
     ################################################################
 
@@ -159,6 +159,8 @@ def play_game() :
         #층이동
         if(Floor_move):
             Floor_move = False
+            tmp = Floor_now
+            del(tmp)
             Floor_now = Floor.Floor()
             Room_now = Floor_now.get_room()
             Floor_level += 1

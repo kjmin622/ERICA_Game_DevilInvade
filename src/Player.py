@@ -3,8 +3,8 @@ from Move import *
 class Player(Move) :
     max_hp = 10     #최대 체력, 초기값 10
     hp = 10         #체력, 초기값 10
-    power = 1       # 공격력, 초기값 1
-    at_speed = 1    # 공격속도, 초기값 1
+    power = 1.0      # 공격력, 초기값 1
+    at_speed = 1.0    # 공격속도, 초기값 1
     inv = 0
     width = 45
     height = 45

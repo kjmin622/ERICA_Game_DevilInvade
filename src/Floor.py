@@ -113,15 +113,21 @@ class Floor:
         count = 0
         painter(arr,False) # 모든 방 False 로 
 
-        while(count<8 or boxcheck(arr)): 
-            painter(arr,False) 
-            arr = FloorInit(arr) # 방 가져오기
-            count = counter(arr) # True 개수
-        self.floor_init = arr # 방 가져오기
+        done_map = True
+        while(done_map):
+            while(count<8 or boxcheck(arr)): 
+                painter(arr,False) 
+                arr = FloorInit(arr) # 방 가져오기
+                count = counter(arr) # True 개수
+            self.floor_init = arr # 방 가져오기
+            bosscheck_arr = bosscheck(self.floor_init) #보스방 후보들
+            if(bosscheck_arr):
+                bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
+                done_map = False
 
         arr2 = [[],[],[],[],[]]
-        bosscheck_arr = bosscheck(self.floor_init) #보스방 후보들
-        bossroom_position = random.choice(bosscheck_arr) #보스방 뽑기
+
+
 
 # 방을 표현해보아요
 
@@ -140,8 +146,14 @@ class Floor:
     def get_where(self):
         return self.player_position
 
+    def get_bossRoom(self):
+        return self.boss_position
+
     def get_room(self):
         return self.floor_room[self.player_position[0]][self.player_position[1]]
+
+    def get_room_position(self,i,k):
+        return self.floor_room[i][k]
 
     def map_move(self, where, player):
         i = self.player_position[0]
@@ -171,27 +183,4 @@ class Floor:
     
     def bossRoom(self):
         return self.player_position == self.boss_position
-''' 
-floor = Floor( map1)
-player = Player(100,100,1,1)
 
-map = floor.get_map()
-
-
-while(True):
-    for i in range(5):
-        for k in range(6):
-            if(floor.get_where()[0] == i and floor.get_where()[1] == k ):print('a',end="")
-            else:print('x' if map[i][k] else '0', end="")
-        print()
-    
-    room = floor.get_room()
-    print(room.get_e_list())
-    print(room)
-    w = int(input())
-    if(w==-1):
-        room.set_e_list([])
-    else:floor.map_move(w,player)
-
-
-    '''

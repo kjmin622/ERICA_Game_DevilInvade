@@ -47,7 +47,7 @@ class Skill:
             self.cooltime -= 1
     
     def make_cool_1(self, player):
-        self.cooltime = 16 - player.get_as()
+        self.cooltime = 16 * player.get_as()
 
     def skill_1 (self, player, enemy):
         
