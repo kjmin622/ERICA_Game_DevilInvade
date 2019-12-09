@@ -28,13 +28,13 @@ def Level_up(player):
 
             elif(event.type == pg.KEYUP):
                 if(event.key == ord('1')):
-                    player.add_max_hp(1)
+                    player.add_max_hp(2)
                     done = True
                 elif(event.key == ord('2')):
                     player.add_power(0.5)
                     done = True
                 elif(event.key == ord('3')):
-                    player.add_as(-0.09375)
+                    player.add_as(-0.125)
                     done = True
                 elif(event.key == ord('4')):
                     player.add_speed(1)

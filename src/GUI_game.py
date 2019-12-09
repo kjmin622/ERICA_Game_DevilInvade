@@ -171,7 +171,7 @@ def play_game() :
             del(tmp) #원래 있던 층 메모리 제거
             Floor_now = Floor.Floor() # 새로운 층
             Room_now = Floor_now.get_room() # 새로운 시작방
-            Floor_level += 0.3 
+            Floor_level += 0.5 
             P_level += 1
             GUI_level_up.Level_up(player)
             MoveLeft = False
@@ -351,7 +351,18 @@ def play_game() :
         screen.blit(text_max_hp, (155,8))
        
         ########################################################
-        # 지도
+        # boss HP
+        if(boss_room and e_list):
+            boss_maxHp = 0
+            boss_hp = 0
+            for boss in e_list:
+                boss_maxHp += boss.get_maxHp()
+                boss_hp += boss.get_hp()
+            if(boss_maxHp <= 0):boss_maxHp = 1
+            boss_hp = int(420*(boss_hp/boss_maxHp))
+             
+            pg.draw.rect(screen,(30,30,30),(250,30,420,10))
+            pg.draw.rect(screen,(100,0,0),(250,30,boss_hp,10))
         
 
         ########################################################

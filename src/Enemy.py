@@ -7,10 +7,12 @@ class Enemy(Move):
     damage = 0
     width = 0
     height = 0
+    maxHp = 0
 
     def __init__(self,x,y,direction,speed,hp,damage,width,height):
         super().__init__(x,y,direction,speed)
         self.hp = hp
+        self.maxHp = hp
         self.width = width
         self.height = height
         self.damage = damage
@@ -26,6 +28,9 @@ class Enemy(Move):
     
     def get_hp(self):
         return self.hp
+
+    def get_maxHp(self):
+        return self.maxHp
 
     def death(self):
         if(self.hp<=0) :
