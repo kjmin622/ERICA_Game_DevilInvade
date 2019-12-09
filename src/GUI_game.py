@@ -16,6 +16,7 @@ from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
 from enemy import Boss_eyes
+from enemy import Boss_ghost
 
 from file_link import *
 #######################################
@@ -189,7 +190,7 @@ def play_game() :
             #이동한 맵이 보스방일 때
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
                 boss_room = True
-                e_list.append(Boss_eyes.Eyes(0,0,P_level))  #임시보스
+                e_list.append(Boss_ghost.ghost(0,0,P_level))  #임시보스
             
             elif(Floor_now.bossRoom()):
                 boss_room = True
