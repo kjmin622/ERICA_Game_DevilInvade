@@ -14,7 +14,7 @@
 * python 3.6.8
 
 ### 실행법
-* Play.py 실행 ( src에 들어가서 ./Play.py  실행이 되지 않을 시, chmod -x Play.py )
+* Play.py 실행 ( src에 들어가서 ./Play.py  실행이 되지 않을 시, chmod +x Play.py )
 * 시작 메뉴 : 선택은 화살표로 해주세요
 
 
