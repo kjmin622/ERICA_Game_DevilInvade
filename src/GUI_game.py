@@ -17,6 +17,7 @@ from enemy import Mob2
 from enemy import Mob3
 from enemy import Boss_eyes
 from enemy import Boss_ghost
+from enemy import Boss_slime
 
 from file_link import *
 #######################################
@@ -190,7 +191,7 @@ def play_game() :
             #이동한 맵이 보스방일 때
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
                 boss_room = True
-                e_list.append(Boss_ghost.ghost(0,0,P_level))  #임시보스
+                e_list.append(Boss_slime.Slime(300,300,P_level))  #임시보스
             
             elif(Floor_now.bossRoom()):
                 boss_room = True
@@ -221,7 +222,7 @@ def play_game() :
             Crash.E_bump_list(enemy,e_list) #몬스터끼리 겹치지 않도록
             enemy.body_hit(player) # 몬스터와 플레이어의 피격 판정
             if(enemy.death()): # 몬스터 죽음
-                if(random.randrange(0,10) == 9):
+                if(not boss_room and random.randrange(0,10) == 9):
                     h_list.append(Heart.Heart(enemy.get_x(),enemy.get_y()))
 
                 e_list.remove(enemy)
