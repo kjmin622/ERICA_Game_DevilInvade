@@ -69,7 +69,7 @@ def play_game() :
     Skill_1 = [False,False,False,False]
     menu_input = 0
 
-    player = Player.Player(300,300,10,10)  #플레이어 객체 생성
+    player = Player.Player(320,250,10,10)  #플레이어 객체 생성
     P_level = 0 #레벨
 
 
