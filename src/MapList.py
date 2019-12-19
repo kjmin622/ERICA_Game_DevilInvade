@@ -1,6 +1,11 @@
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
+
+from enemy import Boss_eyes
+from enemy import Boss_ghost
+from enemy import Boss_slime
+
 import random
 
 def map1(f_level,level) :
@@ -20,3 +25,12 @@ def map1(f_level,level) :
 
     return e_list[:]
 
+def boss(f_level) :
+    e_list = []
+    rand = random.randrange(3)
+    if(rand == 0) : e_list.append(Boss_eyes.Eyes(0,0,f_level))
+    if(rand == 1) : e_list.append(Boss_ghost.ghost(0,0,f_level))
+    if(rand == 2) : e_list.append(Boss_slime.Slime(340,250,f_level))
+    return e_list[:]
+
+    

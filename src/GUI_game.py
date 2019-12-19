@@ -191,7 +191,7 @@ def play_game() :
             #이동한 맵이 보스방일 때
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
                 boss_room = True
-                e_list.append(Boss_slime.Slime(300,300,P_level))  #임시보스
+                e_list = MapList.boss(P_level)
             
             elif(Floor_now.bossRoom()):
                 boss_room = True
