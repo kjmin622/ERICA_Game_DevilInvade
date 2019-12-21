@@ -56,7 +56,8 @@ class Enemy(Move):
     def shot(self,player,b_list):
         pass
     
-
+    def set_damage(self, damage):
+        self.damage = damage
 
     
  
