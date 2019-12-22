@@ -16,11 +16,11 @@
 ### 실행법
 * pygame 다운로드 
   * 윈도우
-     1.파이썬 or 아나콘다 설치
-     2.명령 프롬프트에서 "pip install pygame" 입력
+    * 파이썬 or 아나콘다 설치
+    * 명령 프롬프트에서 "pip install pygame" 입력
      
   * MacOS
-     1)앱 스토어에서 Xcode 설치
+     앱 스토어에서 Xcode 설치
      2)터미널에서 X code 커맨드 라인 툴을 설치( " xcod-select-install" 입력)
      3)Homebrew(http://brew.sh) 설치
          *("ruby - e "(curl-fsSLhttps://raw.gitubusercontent.com/Homebrew/install/master/install)" 입력)
