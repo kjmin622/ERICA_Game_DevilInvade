@@ -20,12 +20,12 @@
     * 명령 프롬프트에서 "pip install pygame" 입력
      
   * MacOS
-     앱 스토어에서 Xcode 설치
-     2)터미널에서 X code 커맨드 라인 툴을 설치( " xcod-select-install" 입력)
-     3)Homebrew(http://brew.sh) 설치
-         *("ruby - e "(curl-fsSLhttps://raw.gitubusercontent.com/Homebrew/install/master/install)" 입력)
-     4.비밀번호 입력, 설치
-     5.아래 명령 입력 후 실행
+    * 앱 스토어에서 Xcode 설치
+    * 터미널에서 X code 커맨드 라인 툴을 설치( " xcod-select-install" 입력)
+    * Homebrew(http://brew.sh) 설치
+        * ("ruby - e "(curl-fsSLhttps://raw.gitubusercontent.com/Homebrew/install/master/install)" 입력)
+    * 비밀번호 입력, 설치
+    * 아래 명령 입력 후 실행
         * echo export PATH='/usr/local/bin:$PATH'>>~/.bash_profile
         * brew update
         * brew doctor
@@ -36,7 +36,7 @@
         * brew install --HEAD smpeg
         * sudo pip3 install hg+http://bitbucket.org/pygame/pygame
         * pip3 install hg+http://bitbucket.org/pygame/pygame
-     6.python3 기동. import pygame 입력
+    * python3 기동. import pygame 입력
      
 * Play.py 실행 ( src에 들어가서 ./Play.py  실행이 되지 않을 시, chmod +x Play.py )
 
