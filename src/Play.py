@@ -2,6 +2,7 @@
 import GUI_main
 import GUI_game
 import GUI_save
+import GUI_help
 
 action = GUI_main.main(True)
 
@@ -15,7 +16,7 @@ while action != 0 :
     if action == 2 :
         GUI_save.GUI()
     if action == 3 :
-        pass
+        GUI_help.GUI()
 
 
 

@@ -30,6 +30,7 @@ def GUI():
                     done = True
 
         screen.blit(help_image,(0,0))
+        screen.blit(wall_forest_image,(0,0))
 
      
         screen.blit(now_score,(40,10))
@@ -41,5 +42,4 @@ def GUI():
 
         pg.display.flip()
 
-GUI()
 
