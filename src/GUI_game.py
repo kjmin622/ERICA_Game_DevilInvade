@@ -12,6 +12,7 @@ import Heart
 import time
 import GUI_menu
 import GUI_level_up
+import GUI_save
 from enemy import Mob1
 from enemy import Mob2
 from enemy import Mob3
@@ -74,6 +75,7 @@ def play_game() :
 
     player = Player.Player(320,250,10,10)  #플레이어 객체 생성
     P_level = 0 #레벨
+    score = 0
 
 
     skill = Skill.Skill() #스킬 객체 생성
@@ -177,6 +179,7 @@ def play_game() :
             Room_now = Floor_now.get_room() # 새로운 시작방
             Floor_level += 0.5 
             P_level += 1
+            score = (int)(score*1.5)
             GUI_level_up.Level_up(player)
             MoveLeft = False
             MoveRight = False
@@ -192,6 +195,7 @@ def play_game() :
 
             #이동한 맵이 보스방일 때
             if(Floor_now.bossRoom() and Room_now.create_enemy()):
+                score += (P_level+1) * 5
                 boss_room = True
                 e_list = MapList.boss(P_level)
             
@@ -200,6 +204,7 @@ def play_game() :
             
             #이동한 맵이 일반 방일 때 
             elif(Room_now.create_enemy()):
+                score += P_level+1
                 e_list = MapList.map1(Floor_level,P_level)
                 boss_room = False
 
@@ -302,6 +307,8 @@ def play_game() :
        ##########################################################################
         #죽음
         if(player.death()):
+            GUI_save.save(score)
+            GUI_save.GUI(score)
             done = True #죽었을 때 어떻게 할지 구현해야 함
         
         

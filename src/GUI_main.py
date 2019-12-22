@@ -156,7 +156,7 @@ def main(check):
             if(Right) : #기록
                 return 2
 
-            if(Up) : #제작자 및 각종 출처 
+            if(Up) : #도움말 
                 return 3
 
         pg.display.flip()
