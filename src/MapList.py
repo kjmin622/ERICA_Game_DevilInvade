@@ -5,6 +5,7 @@ from enemy import Mob3
 from enemy import Boss_eyes
 from enemy import Boss_ghost
 from enemy import Boss_slime
+from enemy import Boss_kaneki
 
 import random
 
@@ -27,10 +28,11 @@ def map1(f_level,level) :
 
 def boss(f_level) :
     e_list = []
-    rand = random.randrange(3)
+    rand = random.randrange(0,4)
     if(rand == 0) : e_list.append(Boss_eyes.Eyes(0,0,f_level))
     if(rand == 1) : e_list.append(Boss_ghost.ghost(0,0,f_level))
     if(rand == 2) : e_list.append(Boss_slime.Slime(340,250,f_level))
+    if(rand == 3) : e_list.append(Boss_kaneki.kaneki(338,230,f_level))
     return e_list[:]
 
     

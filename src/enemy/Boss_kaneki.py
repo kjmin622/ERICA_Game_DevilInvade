@@ -4,13 +4,15 @@ from Player import *
 from enemy import Mob3
 from Bullet import *
 import random
-class kaneki(enemy){
+from enemy import Choksu
+
+class kaneki(Enemy):
     image = "../image/enemy/Boss_kaneki.png" #45,90
     delay = 60
     level = 1
     
     def __init__(self,x,y,level):
-        super().__init__(x,y,1,0,6+level*1.40,2,45,90)
+        super().__init__(x,y,1,0,20+level*5,2,45,90)
         self.level = level
 
     def get_image(self):
@@ -33,10 +35,11 @@ class kaneki(enemy){
             if(try_ == 0):
                 self.shoot(player,b_list)
 
-            else:
-                for i in range(random.randrange(8)):
-                    for j in range(random.randrange(20)):
-                        e_list.append(choksu.choksu(70+j*30,70+i*70))
+            for i in range(8):
+                for j in range(20):
+                    rand = random.randrange(0,6)
+                    if(rand == 0):
+                        e_list.append(Choksu.choksu(70+j*30,i*70,self.level))
 
-            self.delay = random.randrange(30,60)
+            self.delay = random.randrange(40,60)
 

@@ -18,6 +18,8 @@ from enemy import Mob3
 from enemy import Boss_eyes
 from enemy import Boss_ghost
 from enemy import Boss_slime
+from enemy import Boss_kaneki
+from enemy import Choksu
 
 from file_link import *
 #######################################
@@ -221,6 +223,7 @@ def play_game() :
             ########################################################
             Crash.E_bump_list(enemy,e_list) #몬스터끼리 겹치지 않도록
             enemy.body_hit(player) # 몬스터와 플레이어의 피격 판정
+
             if(enemy.death()): # 몬스터 죽음
                 if(not boss_room and random.randrange(0,10) == 9):
                     h_list.append(Heart.Heart(enemy.get_x(),enemy.get_y()))
