@@ -72,6 +72,11 @@ class Slime(Enemy):
             self.set_x(x+self.get_speed())
             self.set_y(y+self.get_speed())
 
+        if(self.get_x()>650-self.get_width()) : self.set_x(650-self.get_width())
+        if(self.get_x()<70) : self.set_x(70)
+        if(self.get_y()>470-self.get_height()) : self.set_y(470-self.get_height())
+        if(self.get_y()<70) : self.set_y(70)
+
     
     def get_image(self):
         return self.image
