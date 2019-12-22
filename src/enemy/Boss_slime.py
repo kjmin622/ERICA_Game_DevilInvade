@@ -17,18 +17,18 @@ class Slime(Enemy):
     
     def __init__(self,x,y,level,size=0, direction=1):
         if(size==0):
-            super().__init__(x,y,1,8,15+level*3,1,64,64)
+            super().__init__(x,y,1,8,10+level*3,1,64,64)
             self.image = self.image1
             self.level = level
             self.size = size
         elif(size==1):
-            super().__init__(x,y,1,8,2.5+level*0.5,1,32,32)
+            super().__init__(x,y,1,8,2.3+level*0.5,1,32,32)
             self.image = self.image2
             self.level = level
             self.size = size
             self.direction = direction
         else:
-            super().__init__(x,y,1,9,2+level*0.3,1,16,16)
+            super().__init__(x,y,1,9,1,1,16,16)
             self.image = self.image3
             self.level = level
             self.size = size
